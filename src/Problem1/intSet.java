@@ -8,7 +8,11 @@ public final class intSet {
 	}
 	
 	private int[] getArray(){
-		int[] temp =arr;
+		int[] temp =new int[arr.length];
+		
+		for(int i=0; i<temp.length; ++i){
+			temp[i]=arr[i];
+		}
 		return temp;
 	}
 	

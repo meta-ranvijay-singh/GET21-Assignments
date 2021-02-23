@@ -38,14 +38,14 @@ public class Main {
 		Scanner in=new Scanner(System.in);
 		intSet set1,set2;
 		
-		
+		set1=new intSet(inputArray());
 		
 		do{
 			menu();
 			ch=in.nextInt();
 			switch(ch){
 			case 1: 
-				set1=new intSet(inputArray());
+				
 				System.out.print("Enter the number to check member: ");
 				int num=in.nextInt();
 				if(set1.isMember(num)){
@@ -57,14 +57,11 @@ public class Main {
 				break;
 			
 			case 2: 
-				set1=new intSet(inputArray());
+				//set1=new intSet(inputArray());
 				System.out.println("Size of the set : "+set1.size());
 				break;
 			
-			case 3: System.out.println("Enter Main setA : ");
-				set1=new intSet(inputArray());
-				
-				System.out.println("Enter the details setB to check for sub set: ");
+			case 3: System.out.println("Enter the details of  setB to check for sub set: ");
 				set2=new intSet(inputArray());
 				
 				if(set1.isSubSet(set2)){
@@ -76,10 +73,11 @@ public class Main {
 				break;
 				
 			case 4: 
-				set1=new intSet(inputArray());
+				//set1=new intSet(inputArray());
 				int a[]=set1.getComplement();
 				System.out.println("Complement set : ");
 				display(a);
+				
 				break;
 			case 5: System.out.println("Enter setA : ");
 				set1=new intSet(inputArray());
