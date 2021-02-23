@@ -1,6 +1,5 @@
 package Question2;
 
-import java.util.*;
 public class FCFS{
 	int p[][],ct[],tat[],wt[],size;
 	public FCFS(int pro[][], int n){

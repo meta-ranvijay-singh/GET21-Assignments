@@ -21,8 +21,8 @@ public class Main {
 	f.turnAroundTime();
 	f.waitingTime();
 	f.display();
-	
+	in.close();
 }
 
 
-	}
+}

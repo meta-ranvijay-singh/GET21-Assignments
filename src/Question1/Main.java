@@ -1,7 +1,5 @@
 package Question1;
 
-
-import java.io.ObjectInputStream.GetField;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +32,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		int num=16;
-		String res="";
+
 		HexCalc h=new HexCalc(num);
 		Scanner in = new Scanner (System.in);
 		int ch;
@@ -103,7 +101,7 @@ public class Main {
                 break;
         }
 		}while(ch !=0);
-
+		in.close();
 	}
 
 }
