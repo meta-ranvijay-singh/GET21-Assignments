@@ -4,7 +4,6 @@ public class SparseMatrix {
 	public final int[][] pos;
 	private final int row,col;
 	
-	
 	public SparseMatrix(int[][] p, int m, int n){
 		pos=p;
 		row=m;
@@ -14,8 +13,7 @@ public class SparseMatrix {
 	private int[][] getPos(){
 		int tempPos[][]=new int[pos.length][3];
 
-		for(int i=0; i<pos.length; ++i){
-			
+		for(int i=0; i<pos.length; ++i){		
 			tempPos[i][0]=pos[i][0];
 			tempPos[i][1]=pos[i][1];
 			tempPos[i][2]=pos[i][2];
@@ -33,7 +31,6 @@ public class SparseMatrix {
 	}
 	
 	public SparseMatrix transpose(){
-
 		int tempPos[][]=getPos();
 
 		for(int i=0; i<pos.length; ++i){
@@ -42,7 +39,7 @@ public class SparseMatrix {
 			tempPos[i][1]=temp;
 		}
 		
-		SparseMatrix s1=new SparseMatrix(tempPos, row, col);
+		SparseMatrix s1=new SparseMatrix(tempPos, col, row);
 		return s1;
 	}
 	
@@ -55,32 +52,24 @@ public class SparseMatrix {
 	}
 	
 	public boolean checkSymmetry(){
-		int mat[][]=getPos();
-		
 		SparseMatrix s=transpose();
-		
 		int smat[][]=s.getPos();
-		
-		
 		boolean found=false;
+		
 		for(int i=0; i<row; ++i){
 			for(int j=0; j<smat.length; ++j){
-				if(mat[i][0] == smat[j][0]){
-
-					if(mat[i][1] == smat[j][1]){
-						if(mat[i][2] == smat[j][2]){
+				if(pos[i][0] == smat[j][0]){
+					if(pos[i][1] == smat[j][1]){
+						if(pos[i][2] == smat[j][2]){
 							found=true;
 							break;
 						}
 					}
 				}
-				
 			}
 			if(!found){
 				return false;
 			}
-			
-			
 		}
 		
 		return true;
@@ -90,8 +79,7 @@ public class SparseMatrix {
 			System.out.println("Matrices can't be added.");
 		}
 		else{
-			
-			int[][] temp=new SparseMatrix(s.getPos(), s.getRow(), s.getCol()).getPos()  ;
+			int[][] temp=s.getPos();
 			int[][] res=new int[row+temp.length][col+temp.length];
 			
 			for(int i=0; i<row; ++i){
@@ -106,34 +94,25 @@ public class SparseMatrix {
 							found=true;
 							break;
 						}
-					}
-					
+					}		
 				}
 				if(!found){
 					res[i][0]=pos[i][0];
 					res[i][1]=pos[i][1];
 					res[i][2]=pos[i][2];
 				}
-				
 			}
 
 			for(int i=0, j=row; i<temp.length; ++i){
 				if(temp[i][0] != -1){
 					res[j][0]=temp[i][0];
 					res[j][1]=temp[i][1];
-					res[j][2]=temp[i][2];
-
-					++j;
+					res[j++][2]=temp[i][2];
 				}
-				
-
 			}
 			
 			SparseMatrix sm=new SparseMatrix(res, row, col);
-			
-
 			sm.display();
-			
 		}
 	}
 	 public void multiply(SparseMatrix s){
@@ -160,7 +139,6 @@ public class SparseMatrix {
 	    	 System.out.println();
 	     }
 		 
-		 
 	 }
 	public void display(){
 		int temp[][]=new int[row][col];
@@ -171,7 +149,6 @@ public class SparseMatrix {
 		}
 		
 		for(int i=0; i<row; ++i){
-			
 			for(int j=0; j<col; ++j){
 				System.out.print(temp[i][j] +" ");
 			}
