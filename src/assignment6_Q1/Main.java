@@ -5,10 +5,13 @@ import java.util.Scanner;
 public class Main {
 	static Scanner in=new Scanner(System.in);
 	
-	public static SparseMatrix input(){
+	public static void inputSize(Integer m, Integer n){
 		System.out.println("Enter size of matrix (row x col) : ");
-		int row1=in.nextInt();
-		int col1=in.nextInt();		
+		m=in.nextInt();
+		n=in.nextInt();		
+	}
+	
+	public static SparseMatrix input(int row1, int col1){
 		System.out.println("Enter no. of non zero terms : ");
 		int term=in.nextInt();
 		int mat[][]=new int[term][3];
@@ -33,25 +36,20 @@ public class Main {
 		System.out.println("Enter your choice : ");
 	}
 	public static void main(String[] args) {
-		
-		
-//		int p[][]={{0,0,1}, {1,0,1}, {2,2,1}};
-//		int p1[][]={{0,1,1}, {1,2,9}, {2,1,3}};
-//		int row1=3,col1=3;
-//		int row2=3,col2=3;
-		
-		int ch;
+		int ch,p,q,m,n;
 		SparseMatrix m1,m2;
 		
-		
-		//SparseMatrix s2=new SparseMatrix(p1, row2, col2);
 		do{
 		
 			menu();
 			ch=in.nextInt();
 			switch(ch){
 			case 1:
-				m1=input();
+				System.out.println("Enter size of matrix (row x col) : ");
+				m=in.nextInt();
+				n=in.nextInt();
+				
+				m1=input(m,n);
 				System.out.println("Matrix :");
 				m1.display();		
 				System.out.println("\nTranspose of matrix : ");
@@ -59,26 +57,66 @@ public class Main {
 				s.display();
 				break;
 			case 2:
-				m1=input();
-				System.out.println("Matrix :");
-				m1.display();
-				System.out.println("Symmetrical Matrix : "+m1.checkSymmetry());
+				System.out.println("Enter size of matrix (row x col) : ");
+				m=in.nextInt();
+				n=in.nextInt();
+				if(m == n){
+					m1=input(m,n);
+					System.out.println("Matrix :");
+					m1.display();
+					System.out.println("Symmetrical Matrix : "+m1.checkSymmetry());
+				}
+				else{
+					System.out.println("Symmetrical Matrix : false");
+				}
+				
 				break;
 			case 3:
-				System.out.println("Enter matrix A :");
-				m1=input();
-				System.out.println("Enter matrix B :");
-				m2=input();
-				System.out.println("Result :");
-				m1.add(m2);
+				System.out.println("Enter size of matrix A (row x col) : ");
+				m=in.nextInt();
+				n=in.nextInt();		
+				m1=input(m,n);
+				
+				System.out.println("Enter size of matrix B (row x col) : ");
+				p=in.nextInt();
+				q=in.nextInt();		
+				if(m == p && n == q){
+					m2=input(p,q);
+					System.out.println("Result :");
+					SparseMatrix res=m1.add(m2);
+					res.display();
+				}
+				else{
+					System.out.println("Matrices can't be added.");
+				}
 				break;
 			case 4:
-				System.out.println("Enter matrix A :");
-				m1=input();
-				System.out.println("Enter matrix B :");
-				m2=input();
-				System.out.println("Result :");
-				m1.multiply(m2);
+				System.out.println("Enter size of matrix A (row x col) : ");
+				m=in.nextInt();
+				n=in.nextInt();		
+				m1=input(m,n);
+				
+				System.out.println("Enter size of matrix B (row x col) : ");
+				p=in.nextInt();
+				q=in.nextInt();	
+				
+				if(n == p){
+					m2=input(p,q);
+					System.out.println("Result :");
+					int C[][]=m1.multiply(m2);
+					
+					for(int i=0; i<m; ++i){
+				    	 for (int j = 0; j < q; j++) { 
+				    		 System.out.print(C[i][j]+" ");
+				         }
+				    	 System.out.println();
+				     }
+					
+				}
+				else{
+					System.out.println("\nMultiplication Not Possible"); 
+				}
+				
 				break;
 			case 0:
 				System.exit(0);

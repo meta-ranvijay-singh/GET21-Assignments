@@ -56,7 +56,7 @@ public class SparseMatrix {
 		int smat[][]=s.getPos();
 		boolean found=false;
 		
-		for(int i=0; i<row; ++i){
+		for(int i=0; i<pos.length; ++i){
 			for(int j=0; j<smat.length; ++j){
 				if(pos[i][0] == smat[j][0]){
 					if(pos[i][1] == smat[j][1]){
@@ -74,15 +74,12 @@ public class SparseMatrix {
 		
 		return true;
 	}
-	public void add(SparseMatrix s){
-		if(row != s.getRow() || col != s.getCol()){
-			System.out.println("Matrices can't be added.");
-		}
-		else{
+	public SparseMatrix add(SparseMatrix s){
+		SparseMatrix sm;
 			int[][] temp=s.getPos();
-			int[][] res=new int[row+temp.length][col+temp.length];
+			int[][] res=new int[pos.length+temp.length][3];
 			
-			for(int i=0; i<row; ++i){
+			for(int i=0; i<pos.length; ++i){
 				boolean found=false;
 				for(int j=0; j<temp.length; ++j){
 					if(pos[i][0] == temp[j][0]){
@@ -103,7 +100,7 @@ public class SparseMatrix {
 				}
 			}
 
-			for(int i=0, j=row; i<temp.length; ++i){
+			for(int i=0, j=pos.length; i<temp.length; ++i){
 				if(temp[i][0] != -1){
 					res[j][0]=temp[i][0];
 					res[j][1]=temp[i][1];
@@ -111,20 +108,15 @@ public class SparseMatrix {
 				}
 			}
 			
-			SparseMatrix sm=new SparseMatrix(res, row, col);
-			sm.display();
-		}
+			 sm=new SparseMatrix(res, row, col);
+			return sm;
+		
 	}
-	 public void multiply(SparseMatrix s){
+	 public int[][] multiply(SparseMatrix s){
 		 int[][] mat1= matrix(pos, row, col);
 		 int[][] mat2=s.matrix(s.getPos(), s.getRow(), s.getCol());
 		 
-		 if (col != s.getRow()) { 
-	            System.out.println("\nMultiplication Not Possible"); 
-	            return; 
-	     }
-		 
-	     int C[][] = new int[row][s.getCol()]; 
+		 int C[][] = new int[row][s.getCol()]; 
 	     for (int i = 0; i < row; i++) { 
 	    	 for (int j = 0; j < s.getCol(); j++) { 
 	    		 for (int k = 0; k < s.getRow(); k++) 
@@ -132,12 +124,13 @@ public class SparseMatrix {
 	         } 
 	     }
 	     
-	     for(int i=0; i<row; ++i){
-	    	 for (int j = 0; j < s.getCol(); j++) { 
-	    		 System.out.print(C[i][j]+" ");
-	         }
-	    	 System.out.println();
-	     }
+	     return C;
+//	     for(int i=0; i<row; ++i){
+//	    	 for (int j = 0; j < s.getCol(); j++) { 
+//	    		 System.out.print(C[i][j]+" ");
+//	         }
+//	    	 System.out.println();
+//	     }
 		 
 	 }
 	public void display(){
