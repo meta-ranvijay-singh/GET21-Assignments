@@ -5,12 +5,6 @@ import java.util.Scanner;
 public class Main {
 	static Scanner in=new Scanner(System.in);
 	
-	public static void inputSize(Integer m, Integer n){
-		System.out.println("Enter size of matrix (row x col) : ");
-		m=in.nextInt();
-		n=in.nextInt();		
-	}
-	
 	public static SparseMatrix input(int row1, int col1){
 		System.out.println("Enter no. of non zero terms : ");
 		int term=in.nextInt();
