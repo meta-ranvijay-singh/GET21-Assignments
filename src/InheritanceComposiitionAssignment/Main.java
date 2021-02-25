@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Main {
 	static Scanner in=new Scanner(System.in);
 	static int ID;
-	static enum category{
-		Mammal, Reptile, Bird;
-	}
-	static enum mammalType{
-		Lion;
-	}
+//	static enum category{
+//		Mammal, Reptile, Bird;
+//	}
+//	static enum mammalType{
+//		Lion;
+//	}
 	public static void mainMenu(){
 		System.out.println();
 		System.out.println("---------MENU------------");
