@@ -2,7 +2,6 @@ package Fundamental;
 
 import java.util.*;
 
-
 class Shop{
     Cart<Product> cart = new Cart<Product>();
     private int ch = 0;
@@ -32,10 +31,11 @@ Product getCartByProductID(int pid) {
     return product;
 }
 public void startScreen () {
-    System.out.println("1. Display Store Products");
-    System.out.println("2. Display Cart");
-    System.out.println("3. Add to Cart");
-    System.out.println("4. Remove From Cart");
+	System.out.println("\n--------MENU---------");
+    System.out.println("1. Display Availabe Products");
+    System.out.println("2. Display Cart Items");
+    System.out.println("3. Add Item to Cart");
+    System.out.println("4. Remove Item From Cart");
     System.out.println("5. Generate Bill");
     System.out.println("6. Update Cart");
     System.out.println("0. Exit");
@@ -45,11 +45,11 @@ public void startScreen () {
 public void menu () {
     do {
         startScreen();
-        System.out.print("Enter : ");
+        System.out.print("Enter your choice : ");
         getUserInput();
         while(ch == -1){
             startScreen();
-            System.out.print("Enter : ");
+            System.out.print("Enter your choice : ");
         getUserInput();
         }
         switch (ch) {
