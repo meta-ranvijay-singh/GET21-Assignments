@@ -26,6 +26,10 @@ public class Marksheet {
 		return avg;
 	}
 	
+	/**
+	 * Find maximum grade.
+	 * @return int max maximum of all grades
+	 */
 	public int maxGrade(){
 		int max=0;
 		for(int marks:grade){
@@ -35,7 +39,11 @@ public class Marksheet {
 		}
 		return max;
 	}
-	
+
+	/**
+	 * Find minimum grades.
+	 * @return int min maximum of all grades
+	 */
 	public int minGrade(){
 		int min=grade.get(0);
 		
@@ -48,6 +56,10 @@ public class Marksheet {
 		return min;
 	}
 	
+	/**
+	 * Find percentage of passed students.
+	 * @return float percent percentage of passed student
+	 */
 	public float passPercentage(){
 		float percent;
 		int count=0;
