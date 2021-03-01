@@ -72,7 +72,7 @@ public class stringOperation {
 		String large="",largeWord="";
 		for(int i=0; i<arr.length; ++i){
 			
-			if(arr[i] != ' ' && arr[i] != '.' & arr[i] != ','){
+			if(arr[i] != ' ' && arr[i] != '.' & arr[i] != ',' && arr[i] != '\''){
 				++count;
 				large+=arr[i];
 			}

@@ -21,7 +21,7 @@ public class Marksheet {
 		for(int marks:grade){
 			sum+=marks;
 		}
-		avg=sum/0;
+		avg=sum/no_of_stud;
 		
 		return avg;
 	}

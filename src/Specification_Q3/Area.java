@@ -1,14 +1,15 @@
 package Specification_Q3;
 
 public class Area {
-
+	private final double PI=3.14;
+	private final double half=0.5;
 	/**
 	 * Find area of triangle.
 	 * @param double width and height of triangle
 	 * @return double area of triangle
 	 */
 	public double triangleArea(double width, double height){
-		return 0.5 * width * height;
+		return half * width * height;
 	}
 	
 	/**
@@ -26,7 +27,7 @@ public class Area {
 	 * @return double area of circle
 	 */
 	public double circleArea(double radius){
-		return 3.14 * radius * radius;
+		return PI * radius * radius;
 	}
 	
 	/**
