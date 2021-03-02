@@ -9,7 +9,7 @@ public class Mathematics {
 	 */
 	int findLCM(int n1,int n2) 
 	{
-		return (n1*n2)/findHCF(n1, n2);
+		return Math.abs((n1*n2)/findHCF(n1, n2));
 		  
  	 }
 	
@@ -20,7 +20,7 @@ public class Mathematics {
 	 */
 	public int findHCF(int n1, int n2){
 		if(n2 == 0){
-			return n1;
+			return Math.abs(n1);
 		}
 		return findHCF(n2, n1%n2);
 	}

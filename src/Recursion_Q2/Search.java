@@ -8,6 +8,8 @@ public class Search {
 	 * @return if found return index else -1
 	 */
 	public int LinearSearch(int[] arr, int num){
+		if(arr.length <= 0)
+			throw new AssertionError(true);
 		int index=0;
 		return findLinear(arr, index, num);
 	}
@@ -18,6 +20,8 @@ public class Search {
 	 * @return if found return index else -1
 	 */
 	public int BinarySearch(int[] arr, int num){
+		if(arr.length <= 0)
+			throw new AssertionError(true);
 		int start=0, end=arr.length-1;
 		return findBinary(arr, start,end, num);
 	}
@@ -28,6 +32,8 @@ public class Search {
 	 * @return if found return index else -1
 	 */
 	private int findLinear(int[] arr, int index, int val){
+		if(index >= arr.length)
+			return -1;
 		if(arr[index] == val){
 			return index;
 		}
