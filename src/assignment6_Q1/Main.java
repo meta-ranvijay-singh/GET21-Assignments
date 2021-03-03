@@ -16,8 +16,8 @@ public class Main {
 			mat[i][1]=in.nextInt();
 			mat[i][2]=in.nextInt();
 		}
-		SparseMatrix s=new SparseMatrix(mat, row1, col1);
-		return s;
+		SparseMatrix sparseMatrix=new SparseMatrix(mat, row1, col1);
+		return sparseMatrix;
 	}
 	
 	public static void menu(){
@@ -30,20 +30,20 @@ public class Main {
 		System.out.println("Enter your choice : ");
 	}
 	public static void main(String[] args) {
-		int ch,p,q,m,n;
+		int choice,row1,col1,row2,col2;
 		SparseMatrix m1,m2;
 		
 		do{
 		
 			menu();
-			ch=in.nextInt();
-			switch(ch){
+			choice=in.nextInt();
+			switch(choice){
 			case 1:
 				System.out.println("Enter size of matrix (row x col) : ");
-				m=in.nextInt();
-				n=in.nextInt();
+				row1=in.nextInt();
+				col1=in.nextInt();
 				
-				m1=input(m,n);
+				m1=input(row1,col1);
 				System.out.println("Matrix :");
 				m1.display();		
 				System.out.println("\nTranspose of matrix : ");
@@ -52,10 +52,10 @@ public class Main {
 				break;
 			case 2:
 				System.out.println("Enter size of matrix (row x col) : ");
-				m=in.nextInt();
-				n=in.nextInt();
-				if(m == n){
-					m1=input(m,n);
+				row1=in.nextInt();
+				col1=in.nextInt();
+				if(row1 == col1){
+					m1=input(row1,col1);
 					System.out.println("Matrix :");
 					m1.display();
 					System.out.println("Symmetrical Matrix : "+m1.checkSymmetry());
@@ -67,15 +67,15 @@ public class Main {
 				break;
 			case 3:
 				System.out.println("Enter size of matrix A (row x col) : ");
-				m=in.nextInt();
-				n=in.nextInt();		
-				m1=input(m,n);
+				row1=in.nextInt();
+				col1=in.nextInt();		
+				m1=input(row1,col1);
 				
 				System.out.println("Enter size of matrix B (row x col) : ");
-				p=in.nextInt();
-				q=in.nextInt();		
-				if(m == p && n == q){
-					m2=input(p,q);
+				row2=in.nextInt();
+				col2=in.nextInt();		
+				if(row1 == row2 && col1 == col2){
+					m2=input(row2,col2);
 					System.out.println("Result :");
 					SparseMatrix res=m1.add(m2);
 					res.display();
@@ -86,21 +86,21 @@ public class Main {
 				break;
 			case 4:
 				System.out.println("Enter size of matrix A (row x col) : ");
-				m=in.nextInt();
-				n=in.nextInt();		
-				m1=input(m,n);
+				row1=in.nextInt();
+				col1=in.nextInt();		
+				m1=input(row1,col1);
 				
 				System.out.println("Enter size of matrix B (row x col) : ");
-				p=in.nextInt();
-				q=in.nextInt();	
+				row2=in.nextInt();
+				col2=in.nextInt();	
 				
-				if(n == p){
-					m2=input(p,q);
+				if(col1 == row2){
+					m2=input(row2,col2);
 					System.out.println("Result :");
 					int C[][]=m1.multiply(m2);
 					
-					for(int i=0; i<m; ++i){
-				    	 for (int j = 0; j < q; j++) { 
+					for(int i=0; i<row1; ++i){
+				    	 for (int j = 0; j < col2; j++) { 
 				    		 System.out.print(C[i][j]+" ");
 				         }
 				    	 System.out.println();
@@ -119,7 +119,7 @@ public class Main {
 				break;
 			}
 			
-		}while(ch != 0);
+		}while(choice != 0);
 		
 		
 		

@@ -4,10 +4,18 @@ public class SparseMatrix {
 	public final int[][] pos;
 	private final int row,col;
 	
-	public SparseMatrix(int[][] p, int m, int n){
-		pos=p;
-		row=m;
-		col=n;
+	public SparseMatrix(int[][] position, int no_of_row, int no_of_col){
+		int [][] temp=new int[position.length][3];
+		
+		for(int i=0; i<position.length; ++i){
+			for(int j=0; j<3; ++j){
+				temp[i][j]=position[i][j];
+			}
+		}
+		
+		pos=temp;
+		row=no_of_row;
+		col=no_of_col;
 	}
 	
 	private int[][] getPos(){
@@ -39,28 +47,28 @@ public class SparseMatrix {
 			tempPos[i][1]=temp;
 		}
 		
-		SparseMatrix s1=new SparseMatrix(tempPos, col, row);
-		return s1;
+		SparseMatrix transposeMatrix=new SparseMatrix(tempPos, col, row);
+		return transposeMatrix;
 	}
 	
-	private int[][] matrix(int[][] p, int m, int n){
+	private int[][] matrix(int[][] position, int m, int n){
 		int temp[][]=new int[m][n];
-		for(int i=0; i<p.length; ++i){
-			temp[p[i][0]][p[i][1]]=p[i][2];
+		for(int i=0; i<position.length; ++i){
+			temp[position[i][0]][position[i][1]]=position[i][2];
 		}
 		return temp;
 	}
 	
 	public boolean checkSymmetry(){
-		SparseMatrix s=transpose();
-		int smat[][]=s.getPos();
+		SparseMatrix transposeMatrix=transpose();
+		int transposePos[][]=transposeMatrix.getPos();
 		boolean found=false;
 		
 		for(int i=0; i<pos.length; ++i){
-			for(int j=0; j<smat.length; ++j){
-				if(pos[i][0] == smat[j][0]){
-					if(pos[i][1] == smat[j][1]){
-						if(pos[i][2] == smat[j][2]){
+			for(int j=0; j<transposePos.length; ++j){
+				if(pos[i][0] == transposePos[j][0]){
+					if(pos[i][1] == transposePos[j][1]){
+						if(pos[i][2] == transposePos[j][2]){
 							found=true;
 							break;
 						}
@@ -74,9 +82,11 @@ public class SparseMatrix {
 		
 		return true;
 	}
-	public SparseMatrix add(SparseMatrix s){
-		SparseMatrix sm;
-			int[][] temp=s.getPos();
+	
+	
+	public SparseMatrix add(SparseMatrix sparseMatrixPassed){
+		SparseMatrix result;
+			int[][] temp=sparseMatrixPassed.getPos();
 			int[][] res=new int[pos.length+temp.length][3];
 			
 			for(int i=0; i<pos.length; ++i){
@@ -108,29 +118,26 @@ public class SparseMatrix {
 				}
 			}
 			
-			 sm=new SparseMatrix(res, row, col);
-			return sm;
+			 result=new SparseMatrix(res, row, col);
+			return result;
 		
 	}
-	 public int[][] multiply(SparseMatrix s){
+	 public int[][] multiply(SparseMatrix sparseMatrixPassed){
+		 if(sparseMatrixPassed.getPos().length <= 0){
+			 throw new AssertionError();
+		 }
 		 int[][] mat1= matrix(pos, row, col);
-		 int[][] mat2=s.matrix(s.getPos(), s.getRow(), s.getCol());
+		 int[][] mat2=sparseMatrixPassed.matrix(sparseMatrixPassed.getPos(), sparseMatrixPassed.getRow(), sparseMatrixPassed.getCol());
 		 
-		 int C[][] = new int[row][s.getCol()]; 
+		 int result[][] = new int[row][sparseMatrixPassed.getCol()]; 
 	     for (int i = 0; i < row; i++) { 
-	    	 for (int j = 0; j < s.getCol(); j++) { 
-	    		 for (int k = 0; k < s.getRow(); k++) 
-	    			 C[i][j] += mat1[i][k] * mat2[k][j]; 
+	    	 for (int j = 0; j < sparseMatrixPassed.getCol(); j++) { 
+	    		 for (int k = 0; k < sparseMatrixPassed.getRow(); k++) 
+	    			 result[i][j] += mat1[i][k] * mat2[k][j]; 
 	         } 
 	     }
 	     
-	     return C;
-//	     for(int i=0; i<row; ++i){
-//	    	 for (int j = 0; j < s.getCol(); j++) { 
-//	    		 System.out.print(C[i][j]+" ");
-//	         }
-//	    	 System.out.println();
-//	     }
+	     return result;
 		 
 	 }
 	public void display(){

@@ -1,0 +1,9 @@
+Time Complexity:
+Method name		Time Complexity
+
+transpose		O(n)
+checkSymmetry		O(n^2)
+add			O(m * n)+O(n)
+multiplication		O(n * m * p)
+
+
