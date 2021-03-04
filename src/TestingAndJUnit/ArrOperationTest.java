@@ -43,7 +43,7 @@ public class ArrOperationTest {
 		assertEquals(3, AO.maxMirror( new int[]{1, 2, 3, 8, 9, 3, 2, 1} ) );
 		assertEquals(2, AO.maxMirror(new int[]{7, 1, 4, 9, 7, 4, 1}));
 		assertEquals(3, AO.maxMirror(new int[]{1, 2, 1, 4}));
-		assertEquals(7, AO.maxMirror(new int[]{1, 4, 5, 3, 5, 4, 1}));
+		assertEquals(10, AO.maxMirror(new int[]{1,2,3,1,2,4,2,1}));
 		assertEquals(1, AO.maxMirror(new int[]{1}));
 		assertEquals(2, AO.maxMirror(new int[]{1,-2,3,2,1}));
 		
