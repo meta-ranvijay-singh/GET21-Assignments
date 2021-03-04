@@ -9,17 +9,18 @@ public class ShapeFactory {
 		
 		switch(type){
 		case CIRCLE:
-				return new Circle(point,list.get(0));
+				return new Circle(type,point,list);
 
 		case TRIANGLE:
-			break;
+			return new Triangle(type,point,list);
 		case RECTANGLE:
-			break;
+			return new Rectangle(type,point,list);
+			
 		case SQUARE:
-			break;
+			return new Square(type,point,list);
 		default:
 			return null;
 		}
-		return null;
+
 	}
 }

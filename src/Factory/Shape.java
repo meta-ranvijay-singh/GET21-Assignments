@@ -1,6 +1,8 @@
 package Factory;
 
-public interface Shape {
+import java.util.List;
+
+public interface Shape{
 	enum shapeType{
 		CIRCLE,RECTANGLE,SQUARE,TRIANGLE
 	};
@@ -9,4 +11,7 @@ public interface Shape {
 	Point getOrigin() throws CloneNotSupportedException;
 	double getPerimeter();
 	boolean isPointEnclosed(Point p);
+	shapeType getType();
+	List<Integer> getList();
+	void display();
 }
