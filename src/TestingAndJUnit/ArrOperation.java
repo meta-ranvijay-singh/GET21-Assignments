@@ -7,48 +7,33 @@ public class ArrOperation {
 	 * @param arr int array
 	 * @return max size of largest mirror section
 	 */
-	public int maxMirror(int[] arr){
-        int temp,max,count;
-        temp=max=count=0;
-        if(arr.length == 0){
-        	throw new AssertionError(true);
-        }
-        if(arr != null){
-        	for(int i=0; i<arr.length; ++i){
-            	count=0;
-            	temp=i;
-            	for(int j=arr.length-1; j>=temp; --j){
-            		if(arr[temp] == arr[j]){ 
-            			if(temp == (arr.length/2) ){
-                     		count*=2;
-                     	}
-            			else{
-                			 count++;
-            			}
-                        if(temp==j){
-                        	count++;
-                        }
-                        temp++;
-            		 }
-            		 else if(count > 0){
-            			  break;                
-            		 }
-            		 if(max < count){
-            			  max=count;
-            		 }
-            	}
-            }
-        }
-        return max;
-        
-//        [ 1,2,3,1,2,4,2,1 ]
-//        		1,2
-//        		1,2
-//        		1,2,4
-//        		1,2,4,2
-//        		1,2,4,2,1
+	public int maxMirror(int[] arr){        
         		
-        		
+		int count = 0;
+		int max = 0;
+		for (int i = 0; i < arr.length; i++)
+			for (int j = arr.length - 1; j >= 0; j--) {
+				if (arr[i] == arr[j]) {
+					count = 0;
+					for (int k = 0; k < arr.length - i; k++)
+						if ((i + k < arr.length) && (j - k >= 0)
+								&& (arr[i + k] == arr[j - k]))
+							++count;
+						else
+							break;
+				}
+				if(max<count)
+					max=count;
+			}
+
+		return max;
+//      [ 1,2,3,1,2,4,2,1 ]
+//		1,2
+//		1,2
+//		1,2,4
+//		1,2,4,2
+//		1,2,4,2,1
+    		
 	}
 	
 	/**
