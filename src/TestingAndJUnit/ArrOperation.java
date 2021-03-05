@@ -9,8 +9,8 @@ public class ArrOperation {
 	 */
 	public int maxMirror(int[] arr){        
         		
-		int count = 0;
-		int max = 0;
+		int count = 0, max=0;
+		
 		for (int i = 0; i < arr.length; i++)
 			for (int j = arr.length - 1; j >= 0; j--) {
 				if (arr[i] == arr[j]) {
@@ -26,14 +26,7 @@ public class ArrOperation {
 					max=count;
 			}
 
-		return max;
-//      [ 1,2,3,1,2,4,2,1 ]
-//		1,2
-//		1,2
-//		1,2,4
-//		1,2,4,2
-//		1,2,4,2,1
-    		
+		return max;	
 	}
 	
 	/**

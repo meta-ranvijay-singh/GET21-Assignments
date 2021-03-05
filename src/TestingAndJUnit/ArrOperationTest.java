@@ -2,6 +2,8 @@ package TestingAndJUnit;
 
 import static org.junit.Assert.*;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -9,7 +11,6 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
-
 
 @RunWith(Parameterized.class)
 public class ArrOperationTest {
@@ -38,17 +39,18 @@ public class ArrOperationTest {
 	/**
 	 * JUnit Test case for maxMirror() method 
 	 */
-	@Test(expected = AssertionError.class)
+	@Test(expected=AssertionError.class)
 	public void maxMirrorTestCase() {
-		//assertEquals(3, AO.maxMirror( new int[]{1, 2, 3, 8, 9, 3, 2, 1} ) );
-		//assertEquals(2, AO.maxMirror(new int[]{7, 1, 4, 9, 7, 4, 1}));
-		//assertEquals(3, AO.maxMirror(new int[]{1, 2, 1, 4}));
-		assertSame(10, AO.maxMirror(new int[]{1,2,3,1,2,4,2,1}));
-		//assertEquals(1, AO.maxMirror(new int[]{1}));
-		//assertEquals(2, AO.maxMirror(new int[]{1,-2,3,2,1}));
 		
-		//assertEquals(AssertionError.class, AO.maxMirror(new int[]{}));
-		//assertEquals(AssertionError.class, AO.maxMirror(null));
+		assertEquals(3, AO.maxMirror( new int[]{1, 2, 3, 8, 9, 3, 2, 1} ) );
+		assertEquals(2, AO.maxMirror(new int[]{7, 1, 4, 9, 7, 4, 1}));
+		assertEquals(3, AO.maxMirror(new int[]{1, 2, 1, 4}));
+		
+		assertEquals(1, AO.maxMirror(new int[]{1}));
+		assertEquals(1, AO.maxMirror(new int[]{1,-2,3,2,1}));
+		
+		assertEquals(AssertionError.class, AO.maxMirror(new int[]{}));
+		assertEquals(AssertionError.class, AO.maxMirror(null));
 	}
 	
 	/**
