@@ -9,6 +9,9 @@ import Factory.Shape.shapeType;
 public class Main {
 	static Scanner in = new Scanner(System.in);
 
+	/**
+	 * Method to display main menu.
+	 */
 	public static void mainMenu() {
 		System.out.println("\n--------Main Menu---------");
 		System.out.println("1. Add shape");
@@ -23,6 +26,9 @@ public class Main {
 		System.out.print("Enter your choice :");
 	}
 
+	/**
+	 * Method to display shape type menu.
+	 */
 	public static void shapeTypeMenu() {
 		System.out.println("\n--------Shape Type---------");
 		System.out.println("1. Circle");
@@ -33,6 +39,11 @@ public class Main {
 		System.out.print("Enter your choice :");
 	}
 
+	/**
+	 * Method to get input for origin point.
+	 * 
+	 * @return origin point
+	 */
 	public static Point inputOrigin() {
 		System.out.println("Enter (x , y) :");
 		double x = in.nextDouble();
@@ -43,6 +54,9 @@ public class Main {
 
 	}
 
+	/**
+	 * Main method.
+	 */
 	public static void main(String[] args) throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 		Screen screen;
@@ -63,11 +77,17 @@ public class Main {
 		do {
 			mainMenu();
 			choice = in.nextInt();
-
+			/**
+			 * Switch case for Main menu
+			 */
 			switch (choice) {
 			case 1:
 				shapeTypeMenu();
 				choice = in.nextInt();
+
+				/**
+				 * Switch case for shape type
+				 */
 				switch (choice) {
 				case 1:
 					System.out.print("Enter Origin Point :");
@@ -101,7 +121,7 @@ public class Main {
 					System.out.print("Enter Left Bottom point :");
 					originPoint = inputOrigin();
 					list = new ArrayList<Integer>();
-					
+
 					System.out.print("Enter side :");
 					list.add(in.nextInt());
 
@@ -146,7 +166,10 @@ public class Main {
 			case 3:
 				shapeTypeMenu();
 				choice = in.nextInt();
-				
+
+				/**
+				 * Switch case for shape type
+				 */
 				switch (choice) {
 				case 1:
 					screen.deleteSpecificTypeShapes(shapeType.values()[choice - 1]);

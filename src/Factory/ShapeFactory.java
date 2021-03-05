@@ -4,6 +4,10 @@ import java.util.List;
 
 import Factory.Shape.shapeType;
 
+/**
+ * Factory class that return the object of different shapes on the basis of
+ * shape type
+ */
 public class ShapeFactory {
 	public Shape getInstance(shapeType type, Point point, List<Integer> list)
 			throws CloneNotSupportedException {

@@ -12,12 +12,24 @@ public class Screen {
 	private Point screenEndPoint;
 	List<Shape> shapes;
 
+	/**
+	 * Screen constructor initializing Max Screen points.
+	 * 
+	 * @param point
+	 *            of Point class
+	 */
 	public Screen(Point point) throws CloneNotSupportedException {
-		// TODO Auto-generated constructor stub
 		shapes = new ArrayList<Shape>();
 		screenEndPoint = (Point) point.clone();
 	}
 
+	/**
+	 * Method to add shapes to the screen.
+	 * 
+	 * @param shapeType
+	 *            type store type of shape, Point point origin point,
+	 *            List<Integer> list store data related to their sides
+	 */
 	public void addShape(shapeType type, Point point, List<Integer> list)
 			throws CloneNotSupportedException {
 		if (point.getX() > 0 && point.getX() < screenEndPoint.getX()
@@ -36,6 +48,12 @@ public class Screen {
 
 	}
 
+	/**
+	 * Method to delete a specific shape.
+	 * 
+	 * @param originPoint
+	 *            of the shape
+	 */
 	public void deleteShape(Point originPoint)
 			throws CloneNotSupportedException {
 		Shape foundshape = pointHasShape(originPoint);
@@ -47,6 +65,12 @@ public class Screen {
 
 	}
 
+	/**
+	 * Method to delete a specific type shapes.
+	 * 
+	 * @param type
+	 *            of the shape
+	 */
 	public void deleteSpecificTypeShapes(shapeType type) {
 		List<Shape> newShapes = new ArrayList<Shape>();
 
@@ -60,6 +84,12 @@ public class Screen {
 
 	}
 
+	/**
+	 * Method to check if a shape is already present on the point.
+	 * 
+	 * @param passedPoint
+	 *            a point where we have to check
+	 */
 	public Shape pointHasShape(Point passedPoint)
 			throws CloneNotSupportedException {
 		for (Shape shape : shapes) {
@@ -71,6 +101,14 @@ public class Screen {
 		return null;
 	}
 
+	/**
+	 * Method to give list of shapes that have the point inside them.
+	 * 
+	 * @param passedPoint
+	 *            point to check
+	 * 
+	 * @return List of shape type object, having passedPoint inside them
+	 */
 	public List<Shape> isPointOccupied(Point passedPoint)
 			throws CloneNotSupportedException {
 		List<Shape> resultedList = new ArrayList<Shape>();
@@ -84,6 +122,15 @@ public class Screen {
 		return resultedList;
 	}
 
+	/**
+	 * Support Method to check the point is inside the shape or not.
+	 * 
+	 * @param originPoint
+	 *            of the shape, list of shape data, shapeType type of shape
+	 *            passPoint point to check
+	 * 
+	 * @return true if passPoint is inside the shape otherwise false
+	 */
 	private boolean isPointInShape(Point originPoint, List<Integer> data,
 			shapeType type, Point passPoint) {
 
@@ -110,6 +157,11 @@ public class Screen {
 
 	}
 
+	/**
+	 * Support Method to make clone of list of shapes present on the screen.
+	 * 
+	 * @return cloned list
+	 */
 	private List<Shape> getClone() {
 		List<Shape> newShapes = new ArrayList<Shape>();
 		for (Shape shape : shapes) {
@@ -118,6 +170,11 @@ public class Screen {
 		return newShapes;
 	}
 
+	/**
+	 * Method to sort shapes list on the basis of area in ascending order.
+	 * 
+	 * @return sorted listed
+	 */
 	public void sortOnArea() throws CloneNotSupportedException {
 		List<Shape> newShapes = getClone();
 		Collections.sort(newShapes, new sortByArea());
@@ -126,6 +183,11 @@ public class Screen {
 		}
 	}
 
+	/**
+	 * Method to sort shapes list on the basis of perimeter in ascending order.
+	 * 
+	 * @return sorted listed
+	 */
 	public void sortOnPerimeter() throws CloneNotSupportedException {
 		List<Shape> newShapes = getClone();
 		Collections.sort(newShapes, new sortByPerimeter());
@@ -134,6 +196,12 @@ public class Screen {
 		}
 	}
 
+	/**
+	 * Method to sort shapes list on the basis of distance from the origin in
+	 * ascending order.
+	 * 
+	 * @return sorted listed
+	 */
 	public void sortOnOrigin() throws CloneNotSupportedException {
 		List<Shape> newShapes = getClone();
 		Collections.sort(newShapes, new sortByOrigin());
@@ -142,6 +210,9 @@ public class Screen {
 		}
 	}
 
+	/**
+	 * Method to display shapes on the screen.
+	 */
 	public void display() throws CloneNotSupportedException {
 		for (Shape shape : shapes) {
 			shape.display();

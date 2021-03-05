@@ -15,6 +15,11 @@ public class Triangle implements Shape {
 	private shapeType type;
 	private List<Integer> list;
 
+	/**
+	 * Triangle constructor initializing its data member.
+	 * @param shapeType type store type of shape, Point point origin point,
+	 * List<Integer> list store its three side
+	 */
 	public Triangle(shapeType type, Point point, List<Integer> list)
 			throws CloneNotSupportedException {
 		originPoint = (Point) point.clone();
@@ -31,32 +36,56 @@ public class Triangle implements Shape {
 		this.type = type;
 	}
 
+	/**
+	 * Method to return area triangle.
+	 * @return area of triangle
+	 */
 	@Override
 	public double getArea() {
 		return area;
 	}
 
+	/**
+	 * Method to origin point of triangle.
+	 * @return origin point of triangle
+	 */
 	@Override
 	public Point getOrigin() throws CloneNotSupportedException {
 		return (Point) originPoint.clone();
 	}
 
+	/**
+	 * Method to get perimeter of triangle.
+	 * @return perimeter of triangle
+	 */
 	@Override
 	public double getPerimeter() {
 		return perimeter;
 	}
 
+	/**
+	 * Method to check if point is inside the triangle.
+	 * @return true if point is inside the triangle otherwise else
+	 */
 	@Override
 	public boolean isPointEnclosed(Point p) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Method to get type of shape.
+	 * @return type of shape
+	 */
 	@Override
 	public shapeType getType() {
 		return type;
 	}
 
+	/**
+	 * Method to get sides of triangle.
+	 * @return tempList sides of triangle.
+	 */
 	@Override
 	public List<Integer> getList() {
 		List<Integer> tempList = new ArrayList<Integer>();
@@ -66,6 +95,9 @@ public class Triangle implements Shape {
 		return tempList;
 	}
 
+	/**
+	 * Method to display triangle properties.
+	 */
 	@Override
 	public void display() {
 		System.out.println("\nType :" + type);
