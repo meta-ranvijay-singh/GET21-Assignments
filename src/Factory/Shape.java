@@ -8,21 +8,42 @@ import java.util.List;
  */
 public interface Shape {
 	enum shapeType {
-		CIRCLE, RECTANGLE, SQUARE, TRIANGLE
+		CIRCLE, RECTANGLE, SQUARE, TRIANGLE, REGULAR_POLYGON
 	};
 
+	/*
+	 * Abstract method to get area of the shape
+	 */
 	double getArea();
 
+	/*
+	 * Abstract method to get origin point of the shape
+	 */
 	Point getOrigin() throws CloneNotSupportedException;
 
+	/*
+	 * Abstract method to get perimeter of the shape
+	 */
 	double getPerimeter();
 
+	/*
+	 * Abstract method to check a point inside of the shape
+	 */
 	boolean isPointEnclosed(Point p);
 
+	/*
+	 * Abstract method to get type of the shape
+	 */
 	shapeType getType();
 
+	/*
+	 * Abstract method to get list of length of side of the shape
+	 */
 	List<Integer> getList();
 
+	/*
+	 * Abstract method to display the details of the shape
+	 */
 	void display();
 
 }

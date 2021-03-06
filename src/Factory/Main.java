@@ -35,6 +35,7 @@ public class Main {
 		System.out.println("2. Rectangle");
 		System.out.println("3. Square");
 		System.out.println("4. Triangle");
+		System.out.println("5. Regular Polygon (sides > 4) ");
 		System.out.println("0. Exit");
 		System.out.print("Enter your choice :");
 	}
@@ -62,9 +63,10 @@ public class Main {
 		Screen screen;
 		Point originPoint;
 		Shape shape;
-		int choice;
+		int choice,side=3;
 		double x_max, y_max;
 		List<Integer> list;
+		List<Point> sidePoints;
 		shapeType type_of_shape;
 
 		System.out.print("Enter X_MAX of the screen : ");
@@ -95,9 +97,7 @@ public class Main {
 					list = new ArrayList<Integer>();
 					System.out.print("Enter radius :");
 					list.add(in.nextInt());
-					shape = new ShapeFactory().getInstance(shapeType.CIRCLE,
-							originPoint, list);
-					screen.addShape(shapeType.CIRCLE, originPoint, list);
+					screen.addShape(shapeType.CIRCLE, originPoint, list, null);
 					screen.display();
 					System.out.print("");
 					break;
@@ -112,9 +112,7 @@ public class Main {
 					System.out.print("Enter width :");
 					list.add(in.nextInt());
 
-					shape = new ShapeFactory().getInstance(shapeType.RECTANGLE,
-							originPoint, list);
-					screen.addShape(shapeType.RECTANGLE, originPoint, list);
+					screen.addShape(shapeType.RECTANGLE, originPoint, list, null);
 					screen.display();
 					break;
 				case 3:
@@ -125,29 +123,55 @@ public class Main {
 					System.out.print("Enter side :");
 					list.add(in.nextInt());
 
-					shape = new ShapeFactory().getInstance(shapeType.SQUARE,
-							originPoint, list);
-					screen.addShape(shapeType.SQUARE, originPoint, list);
+					screen.addShape(shapeType.SQUARE, originPoint, list, null);
 					screen.display();
 					break;
 				case 4:
 					System.out.print("Enter Left Bottom point :");
 					originPoint = inputOrigin();
+					sidePoints=new ArrayList<Point>();
 					list = new ArrayList<Integer>();
 
-					System.out.print("Enter length of side 1 :");
-					list.add(in.nextInt());
+					for(int i=0; i < side; ++i){
+						System.out.print("Enter length of side "+(i+1) +" :");
+						list.add(in.nextInt());
+					}
+					
+					for(int i=1; i < side; ++i){
+						System.out.print("Enter coordinate of point "+ (i+1) +" :");
+						sidePoints.add(inputOrigin());
+					}
 
-					System.out.print("Enter length of side 2 :");
-					list.add(in.nextInt());
-
-					System.out.print("Enter length of side 3 :");
-					list.add(in.nextInt());
-
-					shape = new ShapeFactory().getInstance(shapeType.TRIANGLE,
-							originPoint, list);
-					screen.addShape(shapeType.TRIANGLE, originPoint, list);
+					screen.addShape(shapeType.TRIANGLE, originPoint, list, sidePoints);
 					screen.display();
+					break;
+				case 5:
+
+					System.out.print("Enter no. of side :");
+					int no_of_side=in.nextInt();
+					
+					if(no_of_side <= 4){
+						System.out.println("Enter no of sides greater than 4.");
+					}
+					else{
+						System.out.print("Enter Left Bottom point :");
+						originPoint = inputOrigin();
+						sidePoints=new ArrayList<Point>();
+						list = new ArrayList<Integer>();
+						
+						for(int i=0; i < no_of_side; ++i){
+							System.out.print("Enter length of side "+(i+1) +" :");
+							list.add(in.nextInt());
+						}
+						
+						for(int i=1; i < no_of_side; ++i){
+							System.out.print("Enter coordinate of point "+ (i+1) +" :");
+							sidePoints.add(inputOrigin());
+						}
+
+						screen.addShape(shapeType.REGULAR_POLYGON, originPoint, list, sidePoints);
+						screen.display();
+					}
 					break;
 				case 0:
 					System.exit(0);

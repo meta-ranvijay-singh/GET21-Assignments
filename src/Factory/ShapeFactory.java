@@ -9,7 +9,7 @@ import Factory.Shape.shapeType;
  * shape type
  */
 public class ShapeFactory {
-	public Shape getInstance(shapeType type, Point point, List<Integer> list)
+	public Shape getInstance(shapeType type, Point point, List<Integer> list, List<Point> sidePoints)
 			throws CloneNotSupportedException {
 
 		switch (type) {
@@ -17,12 +17,14 @@ public class ShapeFactory {
 			return new Circle(type, point, list);
 
 		case TRIANGLE:
-			return new Triangle(type, point, list);
+			return new Triangle(type, point, list, sidePoints);
 		case RECTANGLE:
 			return new Rectangle(type, point, list);
 
 		case SQUARE:
 			return new Square(type, point, list);
+		case REGULAR_POLYGON:
+			return new RegularPoly(type, point, list, sidePoints);
 		default:
 			return null;
 		}

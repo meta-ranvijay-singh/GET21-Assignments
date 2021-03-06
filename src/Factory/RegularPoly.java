@@ -7,8 +7,7 @@ import java.util.List;
 
 import Factory.Shape.shapeType;
 
-public class Triangle implements Shape {
-
+public class RegularPoly implements Shape{
 	private double area, perimeter;
 	private Date date;
 	private Point originPoint;
@@ -21,22 +20,31 @@ public class Triangle implements Shape {
 	 * @param shapeType type store type of shape, Point point origin point,
 	 * List<Integer> list store its three side
 	 */
-	public Triangle(shapeType type, Point point, List<Integer> list, List<Point> sidePoints)
+	public RegularPoly(shapeType type, Point point, List<Integer> list, List<Point> sidePoints)
 			throws CloneNotSupportedException {
 		originPoint = (Point) point.clone();
-		date = Calendar.getInstance().getTime();
-		this.list = list;
-
-		perimeter = list.get(0) + list.get(1) + list.get(2);
-
-		double s = perimeter / 2;
-
-		area = Math.sqrt(s * (s - list.get(0)) * (s - list.get(1))
-				* (s - list.get(2)));
-
 		this.type = type;
 		this.sidePoints=sidePoints;
+		date = Calendar.getInstance().getTime();
+		this.list = list;
+		this.sidePoints.add(originPoint);
+
+		double apothem= list.get(0) / ( 2* Math.tan( 180 / list.size() ) );
+		
+		perimeter=calculate_Perimeter();
+		
+		area = ( apothem * perimeter ) / 2;
+
 	}
+	
+	private double calculate_Perimeter(){
+		double sum=0.0;
+		for(int side:list){
+			sum+=side;
+		}
+		return sum;
+	}
+	
 
 	/**
 	 * Method to return area triangle.
@@ -71,25 +79,19 @@ public class Triangle implements Shape {
 	 */
 	@Override
 	public boolean isPointEnclosed(Point passedPoint) {
-		
-		double A = area(originPoint, sidePoints.get(0), sidePoints.get(1));
-		double A1 = area(passedPoint, sidePoints.get(0), sidePoints.get(1));
-		double A2 = area(originPoint, passedPoint, sidePoints.get(1));
-		double A3 = area(originPoint, sidePoints.get(0), passedPoint);
 
-		return (A == A1 + A2 + A3);
-
+		    boolean c = false;
+		    int i, j;
+		    for (i = 0, j = list.size()-1; i < list.size(); j = i++) {
+		      if ( ((sidePoints.get(i).getY() >passedPoint.getY()) != (sidePoints.get(j).getY()>passedPoint.getY())) &&
+		  	 (passedPoint.getX() < (sidePoints.get(j).getX()-sidePoints.get(i).getX()) * (passedPoint.getY()-sidePoints.get(i).getY()) / (sidePoints.get(j).getY()-sidePoints.get(i).getY()) + sidePoints.get(i).getX()) )
+		         c = !c;
+		    }
+	    	System.out.println(c);
+		    return c;	
+		    
 	}
 	
-	/**
-	 * Support Method for isPointEnclosed() to find area.
-	 * @return area using three point
-	 */
-	private double area(Point point1, Point point2, Point point3) {
-		return Math.abs((point1.getX() * (point2.getY() - point3.getY())
-				+ point2.getX() * (point3.getY() - point1.getY()) + point3
-				.getX() * (point1.getY() - point2.getY())) / 2.0);
-	}
 
 	/**
 	 * Method to get type of shape.
@@ -125,5 +127,4 @@ public class Triangle implements Shape {
 		System.out.println("\nTime Stamp : " + date);
 
 	}
-
 }

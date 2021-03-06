@@ -30,7 +30,7 @@ public class Screen {
 	 *            type store type of shape, Point point origin point,
 	 *            List<Integer> list store data related to their sides
 	 */
-	public void addShape(shapeType type, Point point, List<Integer> list)
+	public void addShape(shapeType type, Point point, List<Integer> list, List<Point> sidePoint)
 			throws CloneNotSupportedException {
 		if (point.getX() > 0 && point.getX() < screenEndPoint.getX()
 				&& point.getY() > 0 && point.getY() < screenEndPoint.getY()) {
@@ -39,7 +39,7 @@ public class Screen {
 						.println("A shape is already drawn at this origin point.");
 			} else {
 				Shape tempShape = new ShapeFactory().getInstance(type, point,
-						list);
+						list, sidePoint);
 				shapes.add(tempShape);
 			}
 		} else {
@@ -113,8 +113,7 @@ public class Screen {
 			throws CloneNotSupportedException {
 		List<Shape> resultedList = new ArrayList<Shape>();
 		for (Shape shape : shapes) {
-			if (isPointInShape(shape.getOrigin(), shape.getList(),
-					shape.getType(), passedPoint)) {
+			if(shape.isPointEnclosed(passedPoint)){
 				resultedList.add(shape);
 			}
 		}
@@ -122,40 +121,6 @@ public class Screen {
 		return resultedList;
 	}
 
-	/**
-	 * Support Method to check the point is inside the shape or not.
-	 * 
-	 * @param originPoint
-	 *            of the shape, list of shape data, shapeType type of shape
-	 *            passPoint point to check
-	 * 
-	 * @return true if passPoint is inside the shape otherwise false
-	 */
-	private boolean isPointInShape(Point originPoint, List<Integer> data,
-			shapeType type, Point passPoint) {
-
-		switch (type) {
-		case CIRCLE:
-			if (Math.pow((passPoint.getX() - originPoint.getX()), 2)
-					+ Math.pow((passPoint.getY() - originPoint.getY()), 2) < Math
-						.pow(data.get(0), 2)) {
-				return true;
-			}
-			break;
-		case RECTANGLE:
-		case SQUARE:
-			if (passPoint.getX() > originPoint.getX()
-					&& passPoint.getX() < (originPoint.getX() + data.get(0))
-					&& passPoint.getY() > originPoint.getY()
-					&& passPoint.getY() < (originPoint.getY() + data.get(1))) {
-				return true;
-			}
-			break;
-		}
-
-		return false;
-
-	}
 
 	/**
 	 * Support Method to make clone of list of shapes present on the screen.
