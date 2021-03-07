@@ -8,7 +8,7 @@ public class LinkedList {
 	/**
 	 * Node class used to create new node in the linked list.
 	 */
-	class Node {
+	public class Node {
 		int data;
 		public Node next;
 
