@@ -7,10 +7,11 @@ class EvaluateInfixExpression {
 	private Stack<Double> values;
 	private Stack<Character> operator;
 
-
 	/*
 	 * Method to evaluate infix expression
+	 * 
 	 * @param expression infix expression for evaluation
+	 * 
 	 * @return final result of whole expression
 	 */
 	public double evaluate(String expression) {
@@ -64,13 +65,16 @@ class EvaluateInfixExpression {
 
 	/*
 	 * Method to check precedence of operator
+	 * 
 	 * @param operator1 and operator2 for comparing
+	 * 
 	 * @return return false if operator1 has high precedence otherwise true
 	 */
 	public boolean hasPrecedence(char operator1, char operator2) {
 		if (operator2 == '(' || operator2 == ')')
 			return false;
-		if ((operator1 == '*' || operator1 == '/') && (operator2 == '+' || operator2 == '-'))
+		if ((operator1 == '*' || operator1 == '/')
+				&& (operator2 == '+' || operator2 == '-'))
 			return false;
 		else
 			return true;
@@ -78,7 +82,9 @@ class EvaluateInfixExpression {
 
 	/*
 	 * Method to calculate value between two operands
+	 * 
 	 * @param operator, num1 and num2 are operands
+	 * 
 	 * @return result of operator
 	 */
 	public double calculate(char operator, double num1, double num2) {
@@ -101,15 +107,16 @@ class EvaluateInfixExpression {
 public class Main {
 
 	public static void main(String[] args) {
-		
-		Scanner in=new Scanner(System.in);
-		EvaluateInfixExpression infixEvaluation = new EvaluateInfixExpression();
-		
-		System.out.print("Enter infix expression : ");
-		String expression=in.nextLine();
 
-		System.out.printf(expression+ " = %.2f", infixEvaluation.evaluate(expression));
-		
+		Scanner in = new Scanner(System.in);
+		EvaluateInfixExpression infixEvaluation = new EvaluateInfixExpression();
+
+		System.out.print("Enter infix expression : ");
+		String expression = in.nextLine();
+
+		System.out.printf(expression + " = %.2f",
+				infixEvaluation.evaluate(expression));
+
 		in.close();
 	}
 }

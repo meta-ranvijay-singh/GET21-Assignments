@@ -14,7 +14,7 @@ public class Stack<T> {
 		}
 	}
 
-	//Head
+	// Head
 	public Node head = null;
 
 	/**
@@ -36,7 +36,7 @@ public class Stack<T> {
 
 		return;
 	}
-	
+
 	/**
 	 * Method to insert element in the stack.
 	 */
@@ -46,9 +46,9 @@ public class Stack<T> {
 			return null;
 		}
 
-		T pop=head.data;
-		head=head.next;
-		
+		T pop = head.data;
+		head = head.next;
+
 		return pop;
 	}
 
@@ -68,22 +68,24 @@ public class Stack<T> {
 		}
 		System.out.println();
 	}
-	
+
 	/**
 	 * Method to get peek value of the stack.
+	 * 
 	 * @return peek value of stack
 	 */
-	public T peek(){
-		T peek=head.data;
+	public T peek() {
+		T peek = head.data;
 		return peek;
 	}
 
 	/**
 	 * Method to check wheather stack is empty or not.
+	 * 
 	 * @return true if stack is empty otherwise false
 	 */
-	public boolean empty(){
-		if(head == null)
+	public boolean empty() {
+		if (head == null)
 			return true;
 		else
 			return false;
