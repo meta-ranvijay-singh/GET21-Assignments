@@ -65,16 +65,43 @@ public class Priority_Queue {
 			System.out.println("Queue is empty.");
 			return;
 		} else {
-			for (int i = 0; i < rear - 1; i++) {
-				queue[i] = queue[i + 1];
-			}
-			if (rear < capacity)
-				queue[rear] = 0;
-
-			rear--;
+			 int highPriorityIndex = peek(); 
+			  
+			    // Shift the element one index before 
+			    // from the postion of the element 
+			    // with highest priortity is found 
+			    for (int i = highPriorityIndex; i < capacity; i++) { 
+			        priority_queue[i][0] = priority_queue[i + 1][0];
+			        priority_queue[i][1] = priority_queue[i + 1][1];
+			    } 
+			  
+			    // Decrease the size of the 
+			    // priority queue by one 
+			    capacity--; 
 		}
 		return;
 	}
+	
+	public int peek() 
+	{ 
+		if(isEmpty()){
+			return -1;
+		}
+		
+	    int highestPriorityIndex = 0; 
+	    int highestPriority = priority_queue[0][0]; 
+	  
+	    // Check for the element with 
+	    // highest priority 
+	    for (int i = 1; i < capacity; i++) { 
+	    	if(highestPriority > priority_queue[i][0]){
+	    		highestPriority = priority_queue[i][0];
+	    		highestPriorityIndex = i;
+	    	}
+	    } 
+	  
+	    return highestPriorityIndex; 
+	} 
 
 	/*
 	 * Method to display queue
@@ -87,7 +114,7 @@ public class Priority_Queue {
 		}
 
 		for (i = front; i < rear; i++) {
-			System.out.print(queue[i] + " ");
+			System.out.print(priority_queue[i][0] + "->" + priority_queue[i][1]+" ");
 		}
 		return;
 	}
