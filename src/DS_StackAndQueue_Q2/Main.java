@@ -17,7 +17,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		Queue queue;
+		Queue<Integer> queue;
 		CircularQueue circular_queue;
 		int capacity, choice, queuetype;
 
@@ -31,7 +31,7 @@ public class Main {
 			System.out.println("Enter capacity off the queue :");
 			capacity = in.nextInt();
 
-			queue = new Queue(capacity);
+			queue = new QueueClass(capacity);
 
 			do {
 				mainMenu();

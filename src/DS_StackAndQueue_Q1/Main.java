@@ -2,6 +2,109 @@ package DS_StackAndQueue_Q1;
 
 import java.util.Scanner;
 
+class GenericStack<T> implements Stack<T> {
+	/**
+	 * Node class used to create new node in the linked list.
+	 */
+	public class Node<T> {
+		T data;
+		public Node next;
+
+		public Node(T data) {
+			this.data = data;
+			this.next = null;
+		}
+	}
+
+	// Head
+	public Node<T> head = null;
+
+	/**
+	 * Method to insert element in the stack.
+	 * 
+	 * @param new_data
+	 *            data to be insert
+	 */
+	@Override
+	public void push(T new_data) {
+		Node<T> new_node = new Node<T>(new_data);
+
+		if (head == null) {
+			head = new_node;
+			return;
+		}
+
+		new_node.next = head;
+		head = new_node;
+
+		return;
+
+	}
+
+	/**
+	 * Method to insert element in the stack.
+	 */
+	@Override
+	public T pop() {
+		if (head == null) {
+			return null;
+		}
+
+		T pop = head.data;
+		head = head.next;
+
+		return pop;
+	}
+
+	/**
+	 * Method to traverse stack.
+	 */
+	@Override
+	public void traverse() {
+		Node tempNode = head;
+		if (head == null) {
+			System.out.println("Stack is empty");
+			return;
+		}
+
+		while (tempNode != null) {
+			System.out.print("->" + tempNode.data);
+			tempNode = tempNode.next;
+		}
+		System.out.println();
+
+	}
+
+	/**
+	 * Method to get peek value of the stack.
+	 * 
+	 * @return peek value of stack
+	 */
+	@Override
+	public T peek() {
+		T peek = head.data;
+		return peek;
+	}
+
+	/**
+	 * Method to check wheather stack is empty or not.
+	 * 
+	 * @return true if stack is empty otherwise false
+	 */
+	@Override
+	public boolean empty() {
+		if (head == null) {
+			return true;
+		}
+
+		else {
+			return false;
+		}
+
+	}
+
+}
+
 class EvaluateInfixExpression {
 
 	private Stack<Double> values;
@@ -16,9 +119,10 @@ class EvaluateInfixExpression {
 	 */
 	public double evaluate(String expression) {
 
-		values = new Stack<Double>();
-		operator = new Stack<Character>();
+		values = new GenericStack<Double>();
+		operator = new GenericStack<Character>();
 
+		//Loop for scanning one character at a time from expression
 		for (int i = 0; i < expression.length(); i++) {
 
 			if (expression.charAt(i) == ' ')
@@ -26,6 +130,8 @@ class EvaluateInfixExpression {
 
 			if (expression.charAt(i) >= '0' && expression.charAt(i) <= '9') {
 				String digit = "";
+				
+				//Loop will run untill it encounter an operator
 				while (i < expression.length() && expression.charAt(i) >= '0'
 						&& expression.charAt(i) <= '9') {
 					digit += expression.charAt(i++);
@@ -39,6 +145,8 @@ class EvaluateInfixExpression {
 				operator.push(expression.charAt(i));
 
 			else if (expression.charAt(i) == ')') {
+				
+				//Loop will run untill it encounter opening bracket
 				while (operator.peek() != '(')
 					values.push(calculate(operator.pop(), values.pop(),
 							values.pop()));
@@ -102,6 +210,7 @@ class EvaluateInfixExpression {
 		}
 		return 0;
 	}
+
 }
 
 public class Main {

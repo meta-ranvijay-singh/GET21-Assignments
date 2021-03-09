@@ -1,12 +1,14 @@
 package DS_StackAndQueue_Q2;
 
+import DS_StackAndQueue_Q1.Stack;
+
 /*
  * Implementation of circular queue
  */
-class CircularQueue {
+class CircularQueue<T> implements Queue<T> {
 
 	private int size, front, rear;
-	private int[] queue;
+	private T[] queue;
 
 	/*
 	 * Queue constructor for initializing size of the queue
@@ -16,7 +18,7 @@ class CircularQueue {
 	CircularQueue(int size) {
 		this.size = size;
 		this.front = this.rear = -1;
-		queue = new int[size];
+		queue = (T[])new Object[size];
 	}
 
 	/*
@@ -44,44 +46,48 @@ class CircularQueue {
 		return false;
 	}
 
-	/*
+	 /*
 	 * Method to insert element in the queue
 	 * 
 	 * @param element to be insert
 	 */
-	void Enqueue(int element) {
+	public boolean Enqueue(T element) {
 		if (isEmpty()) {
 			front = 0;
 			rear = 0;
 			queue[rear] = element;
+			return true;
 		} else if (isFull()) {
-			System.out.println("Queue is overflow..");
+			return false;
 		} else {
 			rear = (rear + 1) % size;
 			queue[rear] = element;
+			return true;
 		}
 	}
 
 	/*
 	 * Method to delete element from queue
 	 */
-	public void Dequeue() {
+	public T Dequeue() {
+		T element;
 		if (isEmpty()) {
-			System.out.println("\nQueue is underflow..");
+			return null;
 		} else if (front == rear) {
-			System.out.println("The dequeued element is " + queue[front]);
+			element=queue[front];
 			front = -1;
 			rear = -1;
 		} else {
-			System.out.println("The dequeued element is " + queue[front]);
+			element=queue[front];
 			front = (front + 1) % size;
 		}
+		return element;
 	}
 
-	/*
+	 /*
 	 * Method to display queue
 	 */
-	void Display() {
+	public void Display() {
 		int i;
 		if (isEmpty()) {
 			System.out.println("Queue is empty.");
