@@ -36,6 +36,7 @@ public class Main {
 				"C:\\Users\\ranvijay.singh_metac\\Downloads\\Courses.xlsx"));
 		XSSFWorkbook workbook = new XSSFWorkbook(fis);
 		XSSFSheet sheet = workbook.getSheetAt(0);
+
 		for (Row row : sheet) {
 
 			for (Cell cell : row) {
@@ -50,7 +51,6 @@ public class Main {
 					break;
 				}
 			}
-
 			course = new Courses(course_name, seat);
 			courses.add(course);
 		}
