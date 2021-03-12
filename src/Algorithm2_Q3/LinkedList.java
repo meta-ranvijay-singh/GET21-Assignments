@@ -35,11 +35,11 @@ public class LinkedList {
 		if (head == null) {
 			head = newnode;
 			return;
-		} 
-		
+		}
+
 		newnode.next = head;
 		head = newnode;
-		
+
 	}
 
 	/*
@@ -52,62 +52,64 @@ public class LinkedList {
 			tempHead = tempHead.next;
 		}
 	}
-	
-	 Node paritionLast(Node start, Node end)
-	    {
-	        if (start == end || start == null || end == null)
-	            return start;
-	 
-	        Node pivot_prev = start;
-	        Node curr = start;
-	        Employees pivot = end.employee;
-	 
-	        // iterate till one before the end,
-	        // no need to iterate till the end
-	        // because end is pivot
-	        while (start != end) {
-	            if (start.employee.compareTo(pivot) < 1 ) {
-	                // keep tracks of last modified item
-	                pivot_prev = curr;
-	                Employees temp = curr.employee;
-	                curr.employee = start.employee;
-	                start.employee = temp;
-	                curr = curr.next;
-	            }
-	            start = start.next;
-	        }
-	 
-	        // swap the position of curr i.e.
-	        // next suitable index and pivot
-	        Employees temp = curr.employee;
-	        curr.employee = pivot;
-	        end.employee = temp;
-	 
-	        // return one previous to current
-	        // because current is now pointing to pivot
-	        return pivot_prev;
-	    }
-	 
-	   public void sort(Node start, Node end)
-	    {
-	        if(start == null || start == end|| start == end.next )
-	            return;
-	 
-	        // split list and partion recurse
-	        Node pivot_prev = paritionLast(start, end);
-	        sort(start, pivot_prev);
-	 
-	        // if pivot is picked and moved to the start,
-	        // that means start and pivot is same
-	        // so pick from next of pivot
-	        if (pivot_prev != null && pivot_prev == start)
-	            sort(pivot_prev.next, end);
-	 
-	        // if pivot is in between of the list,
-	        // start from next of pivot,
-	        // since we have pivot_prev, so we move two nodes
-	        else if (pivot_prev != null
-	                 && pivot_prev.next != null)
-	            sort(pivot_prev.next.next, end);
-	    }
+
+	/*
+	 * Method to make partition to perform quick sort
+	 * 
+	 * @param start starting node and end ending node
+	 * 
+	 * @return prev_node Node for partitioning/breaking the whole list to
+	 * perform quick sort on them
+	 */
+	Node paritionLast(Node start, Node end) {
+		if (start == end || start == null || end == null)
+			return start;
+
+		Node pivot_prev = start;
+		Node curr = start;
+		Employees pivot = end.employee;
+		// Loop for finding the node to swap with pivot
+		while (start != end) {
+			if (start.employee.compareTo(pivot) < 1) {
+				pivot_prev = curr;
+				Employees temp = curr.employee;
+				curr.employee = start.employee;
+				start.employee = temp;
+				curr = curr.next;
+			}
+			start = start.next;
+		}
+
+		Employees temp = curr.employee;
+		curr.employee = pivot;
+		end.employee = temp;
+
+		return pivot_prev;
+	}
+
+	/*
+	 * Method to implement quick sort
+	 */
+	public void sort(Node start, Node end) {
+		if (start == null || start == end || start == end.next)
+			return;
+
+		// Partitioning perform
+		Node pivot_prev = paritionLast(start, end);
+		sort(start, pivot_prev);
+
+		/*
+		 * if pivot is picked and moved to the start, that means start and pivot
+		 * is same so pick from next of pivot
+		 */
+		if (pivot_prev != null && pivot_prev == start)
+			sort(pivot_prev.next, end);
+
+		/*
+		 * if pivot is in between of the list, start from next of pivot, since
+		 * we have pivot_prev, so we move two nodes
+		 */
+		else if (pivot_prev != null && pivot_prev.next != null)
+			sort(pivot_prev.next.next, end);
+	}
 }
