@@ -1,80 +1,90 @@
 package Algorithm1_Q1;
 
-class BinarySearchTree {
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 
-	class Node 
-	{
-		int key, value;
-		Node left, right;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-		public Node(int key, int value)
-		{
-			this.key = key;
-			this.value=value;
-			left = right = null;
+import Algorithm1_Q1.BinarySearchTree.Node;
+
+public class Main {
+
+	/*
+	 * Method to print binary search tree in inorder
+	 * @param pasedDictionary list of key-value pair
+	 */
+	public static void display(List<Node> passedDictionary) {
+		List<Node> sortedList = passedDictionary;
+		for (Node node : sortedList) {
+			System.out.println(node.key + " -> " + node.value);
 		}
 	}
 
-	Node root;
-
-	BinarySearchTree() 
-	{ 
-		root = null; 
+	/*
+	 * Menu
+	 */
+	static void menu() {
+		System.out.println("\n-----MENU------");
+		System.out.println("1. Add");
+		System.out.println("2. Delete");
+		System.out.println("3. Sort");
+		System.out.println("4. Dislay");
+		System.out.println("0. Exit");
+		System.out.print("Enter your choice :");
 	}
 
-	void insert(int key, int value) 
-	{ 
-		root = insertRec(root, key, value); 
-	}
+	public static void main(String[] args) throws FileNotFoundException,
+			IOException, ParseException {
+		Scanner in = new Scanner(System.in);
+		JSONParser jsonParser = new JSONParser();
+		Object fileObject = jsonParser
+				.parse(new FileReader(
+						"C:\\Users\\ranvijay.singh_metac\\workspace\\Assignments\\sample.json"));
+		JSONObject json = (JSONObject) fileObject;
+		BinarySearchTree binarySearchTree = new BinarySearchTree(json);
 
-	Node insertRec(Node root, int key, int value)
-	{
+		display(binarySearchTree.sort());
 
-		if (root == null) 
-		{
-			root = new Node(key, value);
-			return root;
-		}
+		int choice, key, value;
 
-		if (key < root.key)
-			root.left = insertRec(root.left, key, value);
-		else if (key > root.key)
-			root.right = insertRec(root.right, key, value);
+		do {
+			menu();
+			choice = in.nextInt();
+			switch (choice) {
+			case 1:
+				System.out.print("Enter key :");
+				key = in.nextInt();
+				System.out.print("Enter value :");
+				value = in.nextInt();
+				binarySearchTree.add(key, value);
+				break;
+			case 2:
+				System.out.print("Enter key :");
+				key = in.nextInt();
+				binarySearchTree.remove(key);
+				break;
+			case 3:
+				List<Node> sortedList = binarySearchTree.sort();
+				display(sortedList);
+				break;
+			case 4:
+				display(binarySearchTree.sort());
+				break;
+			case 0:
+				System.exit(0);
+			default:
+				System.out.println("INVALID!!");
+				break;
+			}
+		} while (choice != 0);
 
-		return root;
-	}
-
-	// This method mainly calls InorderRec()
-	void inorder() 
-	{ 
-		inorderRec(root); 
-	}
-
-	// A utility function to 
-	// do inorder traversal of BST
-	void inorderRec(Node root)
-	{
-		if (root != null) {
-			inorderRec(root.left);
-			System.out.println(root.key+" -> "+root.value);
-			inorderRec(root.right);
-		}
-	}
-}
-
-public class Main{
-	public static void main(String[] args)
-	{
-		BinarySearchTree tree = new BinarySearchTree();
-		tree.insert(5,50);
-		tree.insert(3,30);
-		tree.insert(2,20);
-		tree.insert(4,40);
-		tree.insert(7,70);
-		tree.insert(6,60);
-		tree.insert(8,80);
-
-		tree.inorder();
 	}
 
 }
