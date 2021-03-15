@@ -56,7 +56,11 @@ public class Main {
 			case 3:
 				System.out.print("Enter node number :");
 				int node = in.nextInt();
-				graph.reachable(node);
+				int[] reachableNode=graph.reachable(node);
+				System.out.print("Node " + node + " is connected to: ");
+				for (int j = 0; reachableNode[j] != -1; j++) {
+						System.out.print(reachableNode[j] + " ");
+				}
 				break;
 			case 4:
 				printMST(graph.mst());

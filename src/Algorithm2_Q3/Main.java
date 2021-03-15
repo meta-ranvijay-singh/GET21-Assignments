@@ -41,9 +41,6 @@ public class Main {
 			System.out.print("Want to enter more (Y/N) ? :");
 			choice = in.nextLine();
 		} while ("Y".equals(choice) || "y".equals(choice));
-
-		System.out.println("Unsorted List.");
-		employees.traverse();
 		
 		Node endNode = employees.head;
         while (endNode.next != null){

@@ -199,19 +199,35 @@ public class UndirectedListGraph implements UndirectedGraph {
 	 * @param vertex
 	 */
 	@Override
-	public void reachable(int vertex) {
+	public int[] reachable(int vertex) {
 		Node tempHead = head;
+		int numOfNodes=0;
+		while(tempHead != null){
+			++numOfNodes;
+			tempHead=tempHead.next;
+		}
+		int[] reachableNode=new int[numOfNodes];
+
+		int i=0;
+		for(i=0; i<numOfNodes; ++i){
+			reachableNode[i]= -1;
+		}
+		i=0;
+		tempHead = head;
 		while (tempHead != null) {
 			if (tempHead.vertex == vertex) {
 				connectedNode edges = tempHead.edges;
 				while (edges != null) {
-					System.out.print(edges.vertex + " ");
+					//System.out.print(edges.vertex + " ");
+					reachableNode[i++]=edges.vertex;
 					edges = edges.next;
 				}
 				break;
 			}
 			tempHead = tempHead.next;
 		}
+		
+		return reachableNode;
 
 	}
 

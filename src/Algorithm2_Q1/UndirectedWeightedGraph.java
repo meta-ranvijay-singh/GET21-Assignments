@@ -74,14 +74,21 @@ public class UndirectedWeightedGraph implements UndirectedGraph {
 	 * @param node
 	 */
 	@Override
-	public void reachable(int node) {
-		System.out.print("Node " + node + " is connected to: ");
+	public int[] reachable(int node) {
+		int[] reachableNode=new int[numOfNodes];
+
+		int i=0;
+		for(i=0; i<numOfNodes; ++i){
+			reachableNode[i]= -1;
+		}
+		i=0;
 		for (int j = 0; j < numOfNodes; j++) {
 			if (matrix[node][j] > 0) {
-				System.out.print(j + " ");
+				reachableNode[i]=j;
+				++i;
 			}
 		}
-		System.out.println();
+		return reachableNode;
 	}
 
 	/*
