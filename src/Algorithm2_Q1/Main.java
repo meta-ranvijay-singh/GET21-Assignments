@@ -6,6 +6,12 @@ public class Main {
 
 	static Scanner in = new Scanner(System.in);
 
+	/*
+	 * Method to print mst
+	 * 
+	 * @param result set return by the mst(), It contains the short distance
+	 * with vertex
+	 */
 	public static void printMST(int[][] resultSet) {
 		int total_min_weight = 0;
 		System.out.println("Minimum Spanning Tree: ");
@@ -17,6 +23,9 @@ public class Main {
 		System.out.println("Total minimum key: " + total_min_weight);
 	}
 
+	/*
+	 * Menu
+	 */
 	public static void menu() {
 		System.out.println("\n-------MENU----------");
 		System.out.println("1. Add edge");
