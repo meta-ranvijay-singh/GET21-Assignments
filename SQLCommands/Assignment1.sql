@@ -75,6 +75,8 @@ CREATE TABLE images(
     FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 
+SHOW TABLES;
+
 SET foreign_key_checks=0;
 DROP TABLE product;
 SET foreign_key_checks=1;
