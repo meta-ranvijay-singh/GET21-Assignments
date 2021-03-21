@@ -1,6 +1,5 @@
 package JDBC_Assignment2;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +15,12 @@ public class Main {
 
 		String db_name = "storefront", choice;
 		int product_id, no_of_image;
-		List<String> images=new ArrayList<String>();
+		List<String> imageUrl;
 		API api = new API(db_name);
+		List<Images> images = new ArrayList<Images>();
 
 		do {
+			imageUrl = new ArrayList<String>();
 			System.out.print("Enter product id :");
 			product_id = in.nextInt();
 
@@ -29,15 +30,21 @@ public class Main {
 			in.nextLine();
 			for (int i = 0; i < no_of_image; ++i) {
 				System.out.print("Enter images url " + (i + 1) + " :");
-				images.add(in.nextLine());
+				imageUrl.add(in.nextLine());
 			}
 
-			api.insertImages(product_id, images);
+			Images image = new Images(product_id, imageUrl);
+			images.add(image);
 
 			System.out.print("Want to enter more(Y/N) :");
 			choice = in.nextLine();
 		} while ("Y".equals(choice) || "y".equals(choice));
 
+		if (api.insertImages(images)) {
+			System.out.println("added successfully");
+		} else {
+			System.out.println("Error");
+		}
 
 		api.closeDB();
 
