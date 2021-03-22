@@ -1,0 +1,26 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+header nav{
+	background-color: #0B6BE5;
+	text-align: center;
+}
+
+header nav a{
+	display:inline-block;
+	color: #fff;
+	padding: 1rem;
+	text-decoration: none;
+}
+
+header nav a:hover{
+	background-color: #fff;
+	color:#0B6BE5;
+}
+
+.banner-image{
+	width:100%;
+}
