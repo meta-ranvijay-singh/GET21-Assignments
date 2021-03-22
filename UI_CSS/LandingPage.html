@@ -2,6 +2,15 @@
 <head>
 <title>Landing Page</title>
 <link href="C:\Users\ranvijay.singh_metac\workspace\Assignments\UI_CSS\assets\css\style.css" type="text/css" rel="stylesheet" />
+<script>
+	function Toggle(type){
+		//document.querySelector("."+type).classList.toggle("display-form");
+		let section = document.querySelector(".section-heading");
+		let form = section.querySelector(".add-form");
+		console.log(form);
+		form.classList.toggle("display-form");
+	}
+</script>
 </head>
 
 <body>
@@ -18,9 +27,9 @@
 	<img src="assets/images/employee.jpg" class="banner-image" alt="add employee" />
 
 <!-- Add employee section -->
-<section id="add_employee">
+<section id="add_employee" onclick="Toggle('employee-form')" class="section-heading">
 <h3>ADD EMPLOYEE</h3>
-	<form>
+	<form class="add-form"> 
 		<table border="1">
 			<tr>
 				<td>Full name</td>
@@ -64,8 +73,8 @@
 
 <!-- Add vehicle section -->
 <section id="add_vehicle">
-<h3>ADD VEHICLE</h3>
-	<form>
+<h3 onclick="Toggle('vehicle-form')" class="section-heading">ADD VEHICLE</h3>
+	<form class="vehicle-form">
 		<table border="1">
 			<tr>
 				<td>Vehicle Company</td>

@@ -24,3 +24,27 @@ header nav a:hover{
 .banner-image{
 	width:100%;
 }
+
+.add-form, .vehicle-form{
+	display:none;
+}
+
+.display-form{
+	display:block;
+}
+
+.change-section{
+	background-color:#fff;
+	border-color:#0B6BE5;
+	color:#0B6BE5;
+}
+
+.section-heading{
+	background-color:#0B6BE5;
+	padding:1rem;
+	color:#fff;
+	font-weight:bold;
+	border: 1px solid #fff;
+	border-radius:10px;
+	cursor: pointer;
+}
