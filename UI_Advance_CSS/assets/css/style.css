@@ -1,0 +1,311 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'BootstrapFont';
+    src: url('/assets/fonts/bootstrapThemesCo-icon.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+     url('/assets/fonts/bootstrapThemesCo-icon.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+@font-face {
+    font-family: 'MyWebFont';
+    src: url('/assets/fonts/fontawesome-webfont.woff2') format('woff2'),
+         url('/assets/fonts/fontawesome-webfont.woff') format('woff'),
+         url('/assets/fonts/fontawesome-webfont.ttf') format('truetype');
+  }
+@font-face {
+    font-family: 'FontAwsome';
+    src: url('/assets/fonts/fontawesome-webfont.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+     url('/assets/fonts/fontawesome-webfont.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  
+
+/*-------------------------------HEADER SECTION---------------------------------------*/
+header, footer{
+    position: absolute;
+    width: 100%;
+    padding: 0 15% 0 15%;
+}
+
+.container{
+    padding: 0 20% 0 20%;
+}
+nav{
+    padding: 2rem 0 2rem 0;
+}
+nav a{
+    text-decoration: none;
+    color: #fff;
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+nav ul li{
+    margin-right: 1rem;
+    color: #fff;
+    font-weight: bold;
+}
+.header-content{
+    background-image: url(../images/homebg.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 120vh;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15rem;
+}
+.header-content h1{
+    font-size: 5rem;
+    width: 800px;
+    color: #fff;
+}
+.header-content ul{
+    list-style: none;
+    display: flex;
+    margin-top: 1rem;
+}
+.header-content ul li{
+    margin-right: 1rem;
+}
+.header-content ul li:first-child button{
+    background-color: rgb(230, 90, 9);
+}
+.header-content ul li:last-child button{
+    background-color: rgb(35, 95, 224);
+}
+.header-content ul button{
+    padding: 1.5rem;
+    border-radius: 5px;
+    border: none;
+    width: 10rem;
+    color: #fff;
+}
+
+/*-------------------------------FEATURES SECTION---------------------------------------*/
+body{
+    background-color: rgb(253, 250, 236);
+    background-image: url('/assets/images/bodybg.png');
+}
+.section-heading{
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+    width: 100%;
+    text-align: center;
+}
+.section-heading h1{
+    font-size: 3rem;
+    color: rgb(27, 93, 235);
+}
+.section-heading p{
+    color: rgb(155, 153, 153);
+}
+.center{
+    text-align: center;
+}
+.theme-text-color{
+    color: rgb(27, 93, 235);
+}
+.grey-text{
+    color: rgb(155, 153, 153);
+}
+.heading-font-size{
+    font-size: 3rem;
+}
+.d-flex{
+    display: flex;
+}
+.flex-column{
+    flex-direction: column;
+}
+
+.feature-box{
+    display: flex;
+    width: 350px;
+}
+.feature-box i{
+    font-size: 4rem;
+    color: rgb(245, 86, 86);
+    padding: 1rem;
+}
+.feature-box h2{
+    padding: .5rem;
+}
+.feature-box p{
+    padding: .5rem;
+    text-align: justify;
+    color: rgb(155, 153, 153);
+}
+.box-container{
+    display: flex;
+    justify-content: space-between;
+}
+.carousel{
+    padding: 3rem;
+}
+.carousel ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel img{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.carousel ul li:nth-child(2){
+    z-index: 2;
+}
+.carousel ul li:nth-child(1){
+    transform: translate3d(42px, 0, -135px);
+}
+.carousel ul li:nth-child(3){
+    transform: translate3d(-55px, 0, 42px);
+}
+.screenshot-box{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-bottom: 8rem;
+}
+.screenshot-banner{
+    display: flex;
+    align-items: center;
+    
+}
+.screenshot-banner img{
+    z-index: 1;
+}
+
+.screenshot-banner h1{
+    position: absolute;
+    transform: rotate(90deg);
+    font-size: 11rem;
+    color: rgb(221, 218, 218);
+} 
+.font-14{
+    font-size: 14rem !important;
+}
+.ml-3{
+    margin-left: 3rem;
+}
+.ml-2{
+    margin-left: rem;
+}
+.w-80{
+    width: 80px !important;
+}
+.screenshot-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 4rem;
+}
+.screenshot-content img{
+    width: 120px;
+    padding: 2rem 0 2rem 0;
+}
+.screenshot-content h1{
+    font-size: 3rem;
+}
+.screenshot-content p{
+    font-size: 1.5rem;
+    padding-top: 1rem;
+    width: 500px;
+}
+.screenshot-box ul{
+    list-style: none;
+    margin-top: 3rem;
+}
+.screenshot-content ul li{
+    border: 1px dashed rgb(218, 214, 214);
+    color: rgb(218, 214, 214);
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #fff;
+  
+}
+.screenshot-box ul li:first-child{
+    z-index: 2;
+}
+.screenshot-box ul li:nth-child(2){
+    margin-left: 3rem;
+    z-index: 1;
+}
+.screenshot-box ul li:nth-child(3){
+    margin-left: 6rem;
+}
+
+.review-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.review-box{
+    width: 500px;
+}
+.review-box span{
+    color: rgb(27, 93, 235);
+    font-weight: bold;
+    font-size: 4rem;
+}
+.review-box span:last-of-type{
+    display: block;
+    text-align: right;
+}
+.review-box h3{
+    font-size: 2rem;
+}
+
+#download{
+    background-color: rgba(8, 84, 248);
+    background-image: url('/assets/images/downloadbg.png');
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5rem;
+}
+#download button{
+    border: none;
+    background: none;
+}
+#download img{
+    width: 100%;
+}
+.download-content{
+    color: #fff;
+}
+.download-content h2{
+    font-size: 2rem;
+}
+.download-content p{
+    font-size: 1rem;
+    padding: 2rem 20rem 2rem 0;
+}
+
+footer{
+    background-color: rgb(53, 49, 49);
+    padding-bottom: 3rem;
+    color: rgb(124, 121, 121);
+}
+
+footer hr{
+    border-color: rgb(78, 72, 72);
+}
+
+footer nav a{
+    color: rgb(124, 121, 121);
+}
+footer nav ul li{
+    color: rgb(124, 121, 121);
+}
+footer p{
+    text-align: center;
+    padding: 2rem;
+}
