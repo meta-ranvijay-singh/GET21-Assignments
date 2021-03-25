@@ -200,6 +200,7 @@ body{
     transition: all ease-in-out .5s;
 }
 .screenshot-box{
+    position: relative;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
