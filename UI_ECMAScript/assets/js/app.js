@@ -3,23 +3,23 @@ let name, gender, email, password, confirmpass, contact, error;
 name = gender = email = password = confirmpass = contact = error = null;
 
 //Employee inputs field
-var name_input = document.querySelector("#enter_name");
-var email_input = document.querySelector("#enter_email");
-var password_input = document.querySelector("#enter_password");
-var cpassword_input = document.querySelector("#enter_cpassword");
-var gender_input = document.querySelector(".enter_gender_div");
-var contact_input = document.querySelector("#enter_contact");
-var error_div = document.querySelector("#error");
-var alert_div = document.querySelector(".alert");
+const name_input = document.querySelector("#enter_name");
+const email_input = document.querySelector("#enter_email");
+const password_input = document.querySelector("#enter_password");
+const cpassword_input = document.querySelector("#enter_cpassword");
+const gender_input = document.querySelector(".enter_gender_div");
+const contact_input = document.querySelector("#enter_contact");
+const error_div = document.querySelector("#error");
+const alert_div = document.querySelector(".alert");
 
 /* Regex for validations */
-var emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-var passRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,}$/;
-var nameRegex = /^([a-zA-Z ]){2,}$/;
-var contactRegex = /^([0-9]){10}$/;
+const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+const passRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]{8,}$/;
+const nameRegex = /^([a-zA-Z ]){2,}$/;
+const contactRegex = /^([0-9]){10}$/;
 
 //event listner for employee name inputs on pressing enter key
-name_input.addEventListener("keypress", function (e) {
+name_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     name = document.querySelector("#enter_name").value;
     if (nameRegex.test(name)) {
@@ -40,7 +40,7 @@ name_input.addEventListener("keypress", function (e) {
 });
 
 //function to get gender value from radio button
-function getGender(radio){
+const getGender = (radio) => {
   gender = radio.value;
   document.querySelector("#emp_gender").innerHTML =
     " " + gender + ", Can I know your email";
@@ -51,7 +51,7 @@ function getGender(radio){
 }
 
 //event listner for employee email inputs on pressing enter key
-email_input.addEventListener("keypress", function (e) {
+email_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     email = email_input.value;
     if (emailRegex.test(email)) {
@@ -73,7 +73,7 @@ email_input.addEventListener("keypress", function (e) {
 });
 
 //checking strong password
-function check(input) {
+const check = (input) => {
   if (input.value.length < 9) {
     input.classList.add("border-danger");
   } else if (input.value.length < 12) {
@@ -86,7 +86,7 @@ function check(input) {
 }
 
 //event listner for employee password inputs on pressing enter key
-password_input.addEventListener("keypress", function (e) {
+password_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     password = password_input.value;
     if (passRegex.test(password)) {
@@ -109,7 +109,7 @@ password_input.addEventListener("keypress", function (e) {
 });
 
 //event listner for employee confirm password inputs on pressing enter key
-cpassword_input.addEventListener("keypress", function (e) {
+cpassword_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     confirmpass = cpassword_input.value;
     if (confirmpass == password) {
@@ -131,7 +131,7 @@ cpassword_input.addEventListener("keypress", function (e) {
 });
 
 //event listner for employee contact inputs on pressing enter key
-contact_input.addEventListener("keypress", function (e) {
+contact_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     contact = contact_input.value;
     if (contactRegex.test(contact)) {
@@ -151,7 +151,7 @@ contact_input.addEventListener("keypress", function (e) {
 });
 
 //function for add employee in parking
-var addEmployee = function () {
+const addEmployee = () => {
   let empId = Math.floor(Math.random() * Math.floor(1000));
   let emp_div = document.querySelector(".registration_id");
   emp_div.innerHTML = "Registration ID : " + empId;
@@ -163,35 +163,35 @@ var addEmployee = function () {
 
 
 //variables for vehicle information
-var vehicle_name_input = document.querySelector("#enter_vehicle_name");
-var vehicle_number_input = document.querySelector("#enter_vehicle_number");
-var vehicle_emp_id_input = document.querySelector("#enter_emp_id_vehicle");
-var vehicle_ident_input = document.querySelector(
+const vehicle_name_input = document.querySelector("#enter_vehicle_name");
+const vehicle_number_input = document.querySelector("#enter_vehicle_number");
+const vehicle_emp_id_input = document.querySelector("#enter_emp_id_vehicle");
+const vehicle_ident_input = document.querySelector(
   "#enter_vehicle_identification"
 );
-var vehicle_type_input = document.querySelector(".enter_type_div");
+const vehicle_type_input = document.querySelector(".enter_type_div");
 
 //pricing list for different vehicles
-var cycle_daily_price = 5;
-var cycle_monthly_price = 100;
-var cycle_yearly_price = 500;
+const cycle_daily_price = 5;
+const cycle_monthly_price = 100;
+const cycle_yearly_price = 500;
 
-var motorcycle_daily_price = 10;
-var motorcycle_monthly_price = 200;
-var motorcycle_yearly_price = 1000;
+const motorcycle_daily_price = 10;
+const motorcycle_monthly_price = 200;
+const motorcycle_yearly_price = 1000;
 
-var fourwheeler_daily_price = 20;
-var fourwheeler_monthly_price = 500;
-var fourwheeler_yearly_price = 3500;
+const fourwheeler_daily_price = 20;
+const fourwheeler_monthly_price = 500;
+const fourwheeler_yearly_price = 3500;
 
-var daily_price_div = document.querySelector("#daily_price");
-var monthly_price_div = document.querySelector("#monthly_price");
-var yearly_price_div = document.querySelector("#yearly_price");
+const daily_price_div = document.querySelector("#daily_price");
+const monthly_price_div = document.querySelector("#monthly_price");
+const yearly_price_div = document.querySelector("#yearly_price");
 
-var vehicle_name, type, vehicle_number, vehicle_empid, identification;
+let vehicle_name, type, vehicle_number, vehicle_empid, identification;
 
 //event listner for vehicle name inputs on pressing enter key
-vehicle_name_input.addEventListener("keypress", function (e) {
+vehicle_name_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     vehicle_name = document.querySelector("#enter_vehicle_name").value;
     if (vehicle_name != "") {
@@ -212,7 +212,7 @@ vehicle_name_input.addEventListener("keypress", function (e) {
 });
 
 //function to get vehicle type from radio button
-function getType(radio) {
+const getType = (radio) => {
   type = radio.value;
   document.querySelector("#vehicle_type").innerHTML =
     " " + type + ", Can I know your vehicle number";
@@ -222,7 +222,7 @@ function getType(radio) {
 }
 
 //event listner for vehicle number inputs on pressing enter key
-vehicle_number_input.addEventListener("keypress", function (e) {
+vehicle_number_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     vehicle_number = document.querySelector("#enter_vehicle_number").value;
     if (vehicle_number != "") {
@@ -243,7 +243,7 @@ vehicle_number_input.addEventListener("keypress", function (e) {
 });
 
 //event listner for employee id inputs on pressing enter key
-vehicle_emp_id_input.addEventListener("keypress", function (e) {
+vehicle_emp_id_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     vehicle_empid = document.querySelector("#enter_emp_id_vehicle").value;
     if (vehicle_empid != "") {
@@ -264,7 +264,7 @@ vehicle_emp_id_input.addEventListener("keypress", function (e) {
 });
 
 //event listner for employee name inputs on pressing enter key
-vehicle_ident_input.addEventListener("keypress", function (e) {
+vehicle_ident_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     identification = document.querySelector("#enter_vehicle_identification")
       .value;
@@ -308,7 +308,7 @@ vehicle_ident_input.addEventListener("keypress", function (e) {
   }
 });
 
-function convertToUSD() {
+const convertToUSD = () => {
   switch (type) {
     case "Cycle":
       daily_price_div.innerHTML = cycle_daily_price * 0.014;
@@ -330,7 +330,7 @@ function convertToUSD() {
   }
 }
 
-function convertToYEN() {
+const convertToYEN = () => {
   switch (type) {
     case "Cycle":
       daily_price_div.innerHTML = cycle_daily_price * 1.51;
@@ -352,7 +352,7 @@ function convertToYEN() {
   }
 }
 
-function resetPrice() {
+const resetPrice = () => {
   switch (type) {
     case "Cycle":
       daily_price_div.innerHTML = cycle_daily_price;
@@ -374,10 +374,11 @@ function resetPrice() {
   }
 }
 
-var pass_type_div = document.querySelector("#pass_type");
-var pass_price_div = document.querySelector("#pass_price");
-var pass_price;
-function getPass(pass_type) {
+const pass_type_div = document.querySelector("#pass_type");
+const pass_price_div = document.querySelector("#pass_price");
+let pass_price;
+
+const getPass = (pass_type) => {
   switch (type) {
     case "Cycle":
       pass_type_div.innerHTML = type;
