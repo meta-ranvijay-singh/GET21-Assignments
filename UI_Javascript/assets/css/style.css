@@ -10,7 +10,7 @@
 .enter_cpassword,
 .enter_contact,
 .emp_submit_btn,
-.emp_id,
+.registration_id,
 .alert,
 .vehicle,
 .display_emp_name,
@@ -22,18 +22,21 @@
 .display_emp_id_vehicle,
 .enter_emp_id_vehicle,
 .display_vehicle_identification,
-.enter_vehicle_identification{
-    display: none;
+.enter_vehicle_identification,
+.vehicle_submit_btn,
+.card-price,
+.display_pass {
+  display: none;
 }
 
-.show{
-    display: block;
+.show {
+  display: block;
 }
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
 
-.emp_id{
-    padding: 2rem;
-    text-align: center;
+.registration_id {
+  padding: 2rem;
+  text-align: center;
 }
