@@ -1,6 +1,10 @@
 //variables for employee information
-let name, gender, email, password, confirmpass, contact, error;
-name = gender = email = password = confirmpass = contact = error = null;
+let confirmpass, error;
+confirmpass = error = null;
+
+import { Employee } from './Employee.js';
+import { Vehicle } from './Vehicle.js';
+let employee = new Employee();
 
 //Employee inputs field
 const name_input = document.querySelector("#enter_name");
@@ -21,10 +25,10 @@ const contactRegex = /^([0-9]){10}$/;
 //event listner for employee name inputs on pressing enter key
 name_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    name = document.querySelector("#enter_name").value;
-    if (nameRegex.test(name)) {
+    employee.setName(document.querySelector("#enter_name").value);
+    if (nameRegex.test(employee.name)) {
       document.querySelector("#emp_name").innerHTML =
-        "Hi, " + name + "! Can I know your gender";
+        "Hi, " + employee.name + "! Can I know your gender";
       document.querySelector(".display_emp_name").classList.add("show");
       name_input.classList.add("hide");
       gender_input.classList.add("show");
@@ -41,22 +45,24 @@ name_input.addEventListener("keypress", (e) => {
 
 //function to get gender value from radio button
 const getGender = (radio) => {
-  gender = radio.value;
+  employee.setGender(radio.value);
   document.querySelector("#emp_gender").innerHTML =
-    " " + gender + ", Can I know your email";
+    " " + employee.gender + ", Can I know your email";
   document.querySelector(".display_emp_gender").classList.add("show");
   gender_input.classList.remove("show");
   email_input.classList.add("show");
   email_input.focus();
 }
 
+window.getGender = getGender;
+
 //event listner for employee email inputs on pressing enter key
 email_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    email = email_input.value;
-    if (emailRegex.test(email)) {
+    employee.setEmail( email_input.value);
+    if (emailRegex.test(employee.email)) {
       document.querySelector("#emp_email").innerHTML =
-        " " + email + ", Please enter your password";
+        " " + employee.email + ", Please enter your password";
       email_input.classList.remove("show");
       document.querySelector(".display_emp_email").classList.add("show");
       password_input.focus();
@@ -84,12 +90,13 @@ const check = (input) => {
     input.classList.add("border-success");
   }
 }
+window.check = check;
 
 //event listner for employee password inputs on pressing enter key
 password_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    password = password_input.value;
-    if (passRegex.test(password)) {
+    employee.setPassword( password_input.value);
+    if (passRegex.test(employee.password)) {
       document.querySelector("#emp_password").innerHTML =
         "Verified , Please confirm password";
       password_input.classList.remove("show");
@@ -112,7 +119,7 @@ password_input.addEventListener("keypress", (e) => {
 cpassword_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     confirmpass = cpassword_input.value;
-    if (confirmpass == password) {
+    if (confirmpass == employee.password) {
       document.querySelector("#emp_cpassword").innerHTML =
         "Matched , Please enter your contact number";
       cpassword_input.classList.remove("show");
@@ -133,9 +140,9 @@ cpassword_input.addEventListener("keypress", (e) => {
 //event listner for employee contact inputs on pressing enter key
 contact_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    contact = contact_input.value;
-    if (contactRegex.test(contact)) {
-      document.querySelector("#emp_contact").innerHTML = " " + contact;
+    employee.setContact( contact_input.value);
+    if (contactRegex.test(employee.contact)) {
+      document.querySelector("#emp_contact").innerHTML = " " + employee.contact;
       contact_input.classList.remove("show");
       document.querySelector(".display_emp_contact").classList.add("show");
       document.querySelector("#emp_submit").classList.add("show");
@@ -152,14 +159,15 @@ contact_input.addEventListener("keypress", (e) => {
 
 //function for add employee in parking
 const addEmployee = () => {
-  let empId = Math.floor(Math.random() * Math.floor(1000));
+  employee.setRegistration( Math.floor(Math.random() * Math.floor(1000)));
   let emp_div = document.querySelector(".registration_id");
-  emp_div.innerHTML = "Registration ID : " + empId;
+  emp_div.innerHTML = "Registration ID : " + employee.registration_id;
   document.querySelector("#addEmployee").classList.add("hide");
   emp_div.classList.add("show");
   document.querySelector(".employee").classList.add("hide");
   document.querySelector(".vehicle").classList.add("show");
 };
+window.addEmployee = addEmployee;
 
 
 //variables for vehicle information
@@ -188,15 +196,16 @@ const daily_price_div = document.querySelector("#daily_price");
 const monthly_price_div = document.querySelector("#monthly_price");
 const yearly_price_div = document.querySelector("#yearly_price");
 
-let vehicle_name, type, vehicle_number, vehicle_empid, identification;
 
+
+let vehicle = new Vehicle();
 //event listner for vehicle name inputs on pressing enter key
 vehicle_name_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    vehicle_name = document.querySelector("#enter_vehicle_name").value;
-    if (vehicle_name != "") {
+    vehicle.setVehicleName( document.querySelector("#enter_vehicle_name").value);
+    if (vehicle.vehicle_name != "") {
       document.querySelector("#vehicle_name").innerHTML =
-        vehicle_name + "! Can I know Vehicle type";
+      vehicle.vehicle_name + "! Can I know Vehicle type";
       document.querySelector(".display_vehicle_name").classList.add("show");
       vehicle_name_input.classList.add("hide");
       vehicle_type_input.classList.add("show");
@@ -213,21 +222,22 @@ vehicle_name_input.addEventListener("keypress", (e) => {
 
 //function to get vehicle type from radio button
 const getType = (radio) => {
-  type = radio.value;
+  vehicle.setType( radio.value);
   document.querySelector("#vehicle_type").innerHTML =
-    " " + type + ", Can I know your vehicle number";
+    " " + vehicle.type + ", Can I know your vehicle number";
   document.querySelector(".display_vehicle_type").classList.add("show");
   vehicle_type_input.classList.remove("show");
   vehicle_number_input.classList.add("show");
 }
+window.getType = getType;
 
 //event listner for vehicle number inputs on pressing enter key
 vehicle_number_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    vehicle_number = document.querySelector("#enter_vehicle_number").value;
-    if (vehicle_number != "") {
+    vehicle.setVehicleNumber( document.querySelector("#enter_vehicle_number").value);
+    if (vehicle.vehicle_number != "") {
       document.querySelector("#vehicle_number").innerHTML =
-        vehicle_number + "! Can I know your employee id";
+      vehicle.vehicle_number + "! Can I know your employee id";
       document.querySelector(".display_vehicle_number").classList.add("show");
       vehicle_number_input.classList.add("hide");
       vehicle_emp_id_input.classList.add("show");
@@ -245,10 +255,11 @@ vehicle_number_input.addEventListener("keypress", (e) => {
 //event listner for employee id inputs on pressing enter key
 vehicle_emp_id_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    vehicle_empid = document.querySelector("#enter_emp_id_vehicle").value;
-    if (vehicle_empid != "") {
+    vehicle.setVehicleEmpId(document.querySelector("#enter_emp_id_vehicle").value);
+    employee.setID(vehicle.vehicle_empid)
+    if (vehicle.vehicle_empid != "") {
       document.querySelector("#emp_id_vehicle").innerHTML =
-        vehicle_empid + "! Can I know identification of vehicle";
+      vehicle.vehicle_empid + "! Can I know identification of vehicle";
       document.querySelector(".display_emp_id_vehicle").classList.add("show");
       vehicle_emp_id_input.classList.add("hide");
       vehicle_ident_input.classList.add("show");
@@ -266,17 +277,17 @@ vehicle_emp_id_input.addEventListener("keypress", (e) => {
 //event listner for employee name inputs on pressing enter key
 vehicle_ident_input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    identification = document.querySelector("#enter_vehicle_identification")
-      .value;
-    if (identification != "") {
+    vehicle.setIdentification( document.querySelector("#enter_vehicle_identification")
+      .value);
+    if (vehicle.identification != "") {
       document.querySelector(
         "#vehicle_identification"
-      ).innerHTML = identification;
+      ).innerHTML = vehicle.identification;
       document
         .querySelector(".display_vehicle_identification")
         .classList.add("show");
       vehicle_ident_input.classList.add("hide");
-      switch (type) {
+      switch (vehicle.type) {
         case "Cycle":
           daily_price_div.innerHTML = cycle_daily_price;
           monthly_price_div.innerHTML = cycle_monthly_price;
@@ -309,7 +320,7 @@ vehicle_ident_input.addEventListener("keypress", (e) => {
 });
 
 const convertToUSD = () => {
-  switch (type) {
+  switch (vehicle.type) {
     case "Cycle":
       daily_price_div.innerHTML = cycle_daily_price * 0.014;
       monthly_price_div.innerHTML = cycle_monthly_price * 0.014;
@@ -329,9 +340,10 @@ const convertToUSD = () => {
       break;
   }
 }
+window.convertToUSD = convertToUSD;
 
 const convertToYEN = () => {
-  switch (type) {
+  switch (vehicle.type) {
     case "Cycle":
       daily_price_div.innerHTML = cycle_daily_price * 1.51;
       monthly_price_div.innerHTML = cycle_monthly_price * 1.51;
@@ -351,9 +363,10 @@ const convertToYEN = () => {
       break;
   }
 }
+window.convertToYEN = convertToYEN;
 
 const resetPrice = () => {
-  switch (type) {
+  switch (vehicle.type) {
     case "Cycle":
       daily_price_div.innerHTML = cycle_daily_price;
       monthly_price_div.innerHTML = cycle_monthly_price;
@@ -373,62 +386,62 @@ const resetPrice = () => {
       break;
   }
 }
+window.resetPrice = resetPrice;
 
 const pass_type_div = document.querySelector("#pass_type");
 const pass_price_div = document.querySelector("#pass_price");
 let pass_price;
 
 const getPass = (pass_type) => {
-  switch (type) {
+  pass_type_div.innerHTML = vehicle.type;
+  vehicle.setPassType(pass_type);
+  switch (vehicle.type) {
     case "Cycle":
-      pass_type_div.innerHTML = type;
-      switch (pass_type) {
+      switch (vehicle.pass_type) {
         case "daily":
           pass_price_div.innerHTML = cycle_daily_price;
-          pass_price = cycle_daily_price * 0.014;
+          vehicle.setPassPrice( cycle_daily_price * 0.014);
           break;
         case "monthly":
-          pass_price = cycle_monthly_price * 0.014;
+          vehicle.setPassPrice(cycle_monthly_price * 0.014);
           pass_price_div.innerHTML = cycle_monthly_price;
           break;
         case "yearly":
-          pass_price = cycle_yearly_price * 0.014;
+          vehicle.setPassPrice(cycle_yearly_price * 0.014);
           pass_price_div.innerHTML = cycle_yearly_price;
           break;
       }
       break;
 
     case "MotorCycle":
-      pass_type_div.innerHTML = type;
-      switch (pass_type) {
+      switch (vehicle.pass_type) {
         case "daily":
-          pass_price = motorcycle_daily_price * 0.014;
+          vehicle.setPassPrice(motorcycle_daily_price * 0.014);
           pass_price_div.innerHTML = motorcycle_daily_price;
           break;
         case "monthly":
-          pass_price = motorcycle_monthly_price * 0.014;
+          vehicle.setPassPrice(motorcycle_monthly_price * 0.014);
           pass_price_div.innerHTML = motorcycle_monthly_price;
           break;
         case "yearly":
-          pass_price = motorcycle_yearly_price * 0.014;
+          vehicle.setPassPrice(motorcycle_yearly_price * 0.014);
           pass_price_div.innerHTML = motorcycle_yearly_price;
           break;
       }
       break;
 
     case "FourWheeler":
-      pass_type_div.innerHTML = type;
-      switch (pass_type) {
+      switch (vehicle.pass_type) {
         case "daily":
-          pass_price = fourwheeler_daily_price * 0.014;
+          vehicle.setPassPrice(fourwheeler_daily_price * 0.014);
           pass_price_div.innerHTML = fourwheeler_daily_price;
           break;
         case "monthly":
-          pass_price = fourwheeler_monthly_price * 0.014;
+          vehicle.setPassPrice(fourwheeler_monthly_price * 0.014);
           pass_price_div.innerHTML = fourwheeler_monthly_price;
           break;
         case "yearly":
-          pass_price = fourwheeler_yearly_price * 0.014;
+          vehicle.setPassPrice(fourwheeler_yearly_price * 0.014);
           pass_price_div.innerHTML = fourwheeler_yearly_price;
           break;
       }
@@ -438,4 +451,7 @@ const getPass = (pass_type) => {
   document.querySelector(".card-price").classList.remove("show");
   document.querySelector(".vehicle").classList.remove("show");
   document.querySelector(".display_pass").classList.add("show");
+  vehicle.display();
+  employee.display();
 }
+window.getPass = getPass;
