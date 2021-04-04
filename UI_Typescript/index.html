@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <title>ECMAScript</title>
+</head>
+
+<body class="bg-secondary">
+    <main class="d-flex justify-content-center container p-2">
+        <div class="card w-50 p-4">
+            <div class="employee">
+                <h2 class="text-center">Employee information</h2>
+                <div class="mx-5 pt-4" id="addEmployee">
+                    <div class="alert alert-danger" id="error"></div>
+                    <form action="" name="employee">
+                        <div class="display_emp_name">
+                            <input type="radio" name="display_name" id="radio_emp_name" checked disabled />
+                            <span id="emp_name" class="text-muted"></span>
+                        </div>
+
+                        <input type="text" name="enter_name" id="enter_name" class="form-control my-2"
+                            placeholder="Enter name" autofocus required />
+
+                        <div class="display_emp_gender">
+                            <input type="radio" name="display_gender" id="radio_emp_gender" checked disabled />
+                            <span id="emp_gender" class="text-muted"></span>
+                        </div>
+                        <div class="enter_gender_div">
+                            <div class="d-flex justify-content-evenly">
+                                <label for="male">
+                                    <input type="radio" name="gender" id="male" value="Male"
+                                        onchange="javascript:getGender(this)" />
+                                    <span>Male</span>
+                                </label>
+                                <label for="female">
+                                    <input type="radio" name="gender" id="female" value="Female"
+                                        onchange="getGender(this)" />
+                                    <span>Female</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="display_emp_email">
+                            <input type="radio" name="display_email" id="radio_emp_email" checked disabled />
+                            <span id="emp_email" class="text-muted"></span>
+                        </div>
+                        <input type="email" name="email" id="enter_email" class="form-control my-2 enter_email"
+                            placeholder="Enter email" />
+
+                        <div class="display_emp_password">
+                            <input type="radio" name="display_password" id="radio_emp_password" checked disabled />
+                            <span id="emp_password" class="text-muted"></span>
+                        </div>
+                        <input type="password" name="password" onkeyup="check(this)" id="enter_password"
+                            class="enter_password form-control my-2" placeholder="Enter password" />
+
+                        <div class="display_emp_cpassword">
+                            <input type="radio" name="display_cpassword" id="radio_emp_cpassword" checked disabled />
+                            <span id="emp_cpassword" class="text-muted"></span>
+                        </div>
+                        <input type="password" name="cpassword" id="enter_cpassword"
+                            class="enter_cpassword form-control my-2" placeholder="Enter confirm" />
+
+                        <div class="display_emp_contact">
+                            <input type="radio" name="display_contact" id="radio_emp_contact" checked disabled />
+                            <span id="emp_contact" class="text-muted"></span>
+                        </div>
+                        <input type="tel" name="contact" id="enter_contact" class="enter_contact form-control my-2"
+                            placeholder="Enter contact" />
+
+                        <button class="btn btn-warning emp_submit_btn" type="button" id="emp_submit" name="submit"
+                            onclick="addEmployee()">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="registration_id"></div>
+            <div class="vehicle">
+                <h2 class="text-center">Vehicle Information</h2>
+                <div class="mx-5 pt-4" id="addEmployee">
+                    <div class="alert alert-danger" id="error"></div>
+                    <form action="" name="employee">
+                        <div class="display_vehicle_name">
+                            <input type="radio" name="display_vehicle_name" id="radio_vehicle_name" checked disabled />
+                            <span id="vehicle_name" class="text-muted"></span>
+                        </div>
+
+                        <input type="text" name="enter_vehicle_name" id="enter_vehicle_name" class="form-control my-2"
+                            placeholder="Enter name" autofocus />
+
+                        <div class="display_vehicle_type">
+                            <input type="radio" name="display_vehicle_type" id="radio_vehicle_type" checked disabled />
+                            <span id="vehicle_type" class="text-muted"></span>
+                        </div>
+                        <div class="enter_type_div">
+                            <div class="d-flex justify-content-evenly">
+                                <label for="cycle">
+                                    <input type="radio" name="type" id="cycle" value="Cycle" onchange="getType(this)" />
+                                    <span>Cycle</span>
+                                </label>
+                                <label for="motorcycle">
+                                    <input type="radio" name="type" id="motorcycle" value="MotorCycle"
+                                        onchange="getType(this)" />
+                                    <span>Motor Cycle</span>
+                                </label>
+                                <label for="fourwheeler">
+                                    <input type="radio" name="type" id="fourwheeler" value="FourWheeler"
+                                        onchange="getType(this)" />
+                                    <span>Four Wheeler</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="display_vehicle_number">
+                            <input type="radio" name="display_vehicle_number" id="radio_vehicle_number" checked
+                                disabled />
+                            <span id="vehicle_number" class="text-muted"></span>
+                        </div>
+                        <input type="text" name="vehicle_number" id="enter_vehicle_number"
+                            class="form-control my-2 enter_vehicle_number" placeholder="Enter vehicle number" />
+
+                        <div class="display_emp_id_vehicle">
+                            <input type="radio" name="display_emp_id_vehicle" id="radio_emp_id_vehicle" checked
+                                disabled />
+                            <span id="emp_id_vehicle" class="text-muted"></span>
+                        </div>
+                        <input type="text" name="emp_id_vehicle" id="enter_emp_id_vehicle"
+                            class="enter_emp_id_vehicle form-control my-2" placeholder="Enter employee id" />
+
+                        <div class="display_vehicle_identification">
+                            <input type="radio" name="display_vehicle_identification" id="radio_vehicle_identification"
+                                checked disabled />
+                            <span id="vehicle_identification" class="text-muted"></span>
+                        </div>
+                        <textarea name="vehicle_identification" id="enter_vehicle_identification" cols="30" rows="10"
+                            class="enter_vehicle_identification form-control my-2"></textarea>
+
+                        <div class="card-price">
+                            <div>
+                                <p>Convert Price in :</p>
+                                <button class="btn btn-warning" onclick="convertToUSD()" type="button">
+                                    USD
+                                </button>
+                                <button class="btn btn-warning" type="button" onclick="convertToYEN()">
+                                    YEN
+                                </button>
+                                <button class="btn btn-warning" type="button" onclick="resetPrice()">
+                                    Rupee
+                                </button>
+                            </div>
+                            <div class="card m-3">
+                                <div class="card-body text-center">
+                                    <h6>Daily</h6>
+                                    <p>
+                                        <span id="daily_price"></span>
+                                    </p>
+                                    <button type="button" name="daily_pass" id="daily_pass" class="btn btn-primary"
+                                        onclick="getPass('daily')">
+                                        Get Pass
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card m-3">
+                                <div class="card-body text-center">
+                                    <h6>Monthly</h6>
+                                    <p>
+                                        <span id="monthly_price"></span>
+                                    </p>
+
+                                    <button type="button" name="monthly_pass" id="monthly_pass" class="btn btn-primary"
+                                        onclick="getPass('monthly')">
+                                        Get Pass
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card m-3">
+                                <div class="card-body text-center">
+                                    <h6>Yearly</h6>
+                                    <p>
+                                        <span id="yearly_price"></span>
+                                    </p>
+                                    <button type="button" name="yearly_pass" id="yearly_pass" class="btn btn-primary"
+                                        onclick="getPass('yearly')">
+                                        Get Pass
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="display_pass">
+                <div class="card m-3">
+                    <div class="card-body text-center">
+                        <h6 id="pass_type"></h6>
+                        <p>&#8377; <span id="pass_price"></span></p>
+                        <button type="button" class="btn btn-primary" disabled>
+                            Pass issued
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+        
+        
+    <script type="module" src="/assets/js/app.js"></script>
+</body>
+
+</html>
