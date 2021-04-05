@@ -1,0 +1,42 @@
+.display_emp_name,
+.display_emp_gender,
+.enter_gender_div,
+.display_emp_email,
+.display_emp_password,
+.display_emp_cpassword,
+.display_emp_contact,
+.enter_email,
+.enter_password,
+.enter_cpassword,
+.enter_contact,
+.emp_submit_btn,
+.registration_id,
+.alert,
+.vehicle,
+.display_emp_name,
+.display_vehicle_type,
+.enter_type_div,
+.display_vehicle_name,
+.display_vehicle_number,
+.enter_vehicle_number,
+.display_emp_id_vehicle,
+.enter_emp_id_vehicle,
+.display_vehicle_identification,
+.enter_vehicle_identification,
+.vehicle_submit_btn,
+.card-price,
+.display_pass {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+
+.registration_id {
+  padding: 2rem;
+  text-align: center;
+}
